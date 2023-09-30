@@ -1,17 +1,12 @@
 package com.example.airmovies.fragments.loginfragments
 
 import android.os.Bundle
-import android.util.Log
-import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.airmovies.R
@@ -19,98 +14,75 @@ import com.example.airmovies.data.User
 import com.example.airmovies.databinding.FragmentRegisterBinding
 import com.example.airmovies.util.RegisterValidation
 import com.example.airmovies.util.Resource
-import com.example.airmovies.util.validateEmail
 import com.example.airmovies.viewmodels.RegisterViewModel
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-const val TAG = "RegisterFragment"
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
+
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModels<RegisterViewModel>()
+
+    private val  viewModel: RegisterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentRegisterBinding.inflate(layoutInflater)
-
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                findNavController().navigate(R.id.action_registerFragment_to_optionFragment)
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
-
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvHasAccount.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-        }
-
         binding.apply {
-            rgisterRegisterButton.setOnClickListener {
-                val username = textInputEditTextUsernameR.text.toString().trim()
-                val email = textInputEditTextEmailR.text.toString().trim()
-                val user = User(
-                    username,
-                    email,
-                )
-                val password = textInputEditTextPasswordR.text.toString().trim()
-                val passwordConf = textInputEditTextPasswordConfR.text.toString().trim()
+            rgisterRegisterButton.setOnClickListener{
+                val password = textInputEditTextPasswordR.text.toString()
+                val passwordConf = textInputEditTextPasswordConfR.text.toString()
                 if (password == passwordConf) {
-                    viewModel.createAccountWithEmailAndPassword(user, password)
+                    val user = User(
+                        textInputEditTextUsernameR.text.toString().trim(),
+                        textInputEditTextEmailR.text.toString().trim(),
+                        textInputEditTextPasswordR.text.toString()
+                    )
+                    viewModel.createAccountWithEmailAndPassword(user)
                 } else {
-                    binding.textInputLayoutRegisterPasswordConf.helperText = "Passwords not matching!"
+                    binding.textInputLayoutRegisterPasswordConf.helperText = "Password not matching!"
                 }
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.register.collect {
-                when (it) {
-                    is Resource.Loading -> {
+            viewModel.register.collect{
+                when(it){
+                    is Resource.Loading ->{
                         binding.registerProgressBar.visibility = View.VISIBLE
                     }
-                    is Resource.Error -> {
-                        Snackbar.make(binding.root, it.message.toString(), Snackbar.LENGTH_LONG)
-                        Log.d(TAG, it.message.toString())
+
+                    is Resource.Error ->{
+                        Toast.makeText(requireContext(),it.message.toString(), Toast.LENGTH_SHORT).show()
                         binding.registerProgressBar.visibility = View.GONE
                     }
-                    is Resource.Success -> {
+
+                    is Resource.Success ->{
                         binding.registerProgressBar.visibility = View.GONE
-                        Log.d(TAG, "Successfuly registered!")
-                        Snackbar.make(binding.root, "Successfuly registered!", Snackbar.LENGTH_LONG)
+                        Toast.makeText(requireContext(),"Succesfully register", Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
+
                 }
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.validation.collect { validation ->
-                if (validation.username is RegisterValidation.Failed) {
-                    withContext(Dispatchers.Main) {
-                        binding.textInputEditTextUsernameR.apply {
-                            requestFocus()
-                            binding.textInputLayoutLoginRegisterUsername.helperText = validation.username.message
-                        }
-                    }
-                }
-
-                if (validation.email is RegisterValidation.Failed) {
-                    withContext(Dispatchers.Main) {
+            viewModel.validation.collect{ validation ->
+                if (validation.email is RegisterValidation.Failed){
+                    withContext(Dispatchers.Main){
                         binding.textInputEditTextEmailR.apply {
                             requestFocus()
                             binding.textInputLayoutRegisterEmail.helperText = validation.email.message
@@ -118,17 +90,32 @@ class RegisterFragment : Fragment() {
                     }
                 }
 
-                if (validation.password is RegisterValidation.Failed) {
-                    withContext(Dispatchers.Main) {
+                if (validation.password is RegisterValidation.Failed){
+                    withContext(Dispatchers.Main){
                         binding.textInputEditTextPasswordR.apply {
                             requestFocus()
                             binding.textInputLayoutRegisterPassword.helperText = validation.password.message
                         }
                     }
                 }
+
+                if (validation.username is RegisterValidation.Failed){
+                    withContext(Dispatchers.Main){
+                        binding.textInputEditTextUsernameR.apply {
+                            requestFocus()
+                            binding.textInputLayoutLoginRegisterUsername.helperText = validation.username.message
+                        }
+                    }
+                }
             }
         }
+
+        binding.tvHasAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
