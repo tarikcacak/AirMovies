@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/login_background"
+    tools:context=".fragments.loginfragments.RegisterFragment">
+
+    <ProgressBar
+        android:id="@+id/registerProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvLetsRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/boldfont"
+        android:text="Let's Register"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_35ssp"
+        android:layout_marginTop="@dimen/_50sdp"
+        app:layout_constraintStart_toStartOf="@id/guidelineRegisterStart"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutLoginRegisterUsername"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:textColorHint="@color/white"
+        app:boxStrokeColor="@color/teal_200"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/white"
+        app:hintTextColor="@color/teal_200"
+        app:helperTextTextColor="@color/errorColor"
+        android:layout_marginTop="@dimen/_35sdp"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRegisterEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineRegisterStart"
+        app:layout_constraintTop_toBottomOf="@id/tvLetsRegister"
+        app:startIconDrawable="@drawable/ic_user"
+        app:startIconTint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditTextUsernameR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutRegisterEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:textColorHint="@color/white"
+        app:boxStrokeColor="@color/teal_200"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/white"
+        app:hintTextColor="@color/teal_200"
+        app:helperTextTextColor="@color/errorColor"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRegisterEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineRegisterStart"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutLoginRegisterUsername"
+        app:startIconDrawable="@drawable/ic_email"
+        app:startIconTint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditTextEmailR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutRegisterPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+        app:boxStrokeColor="@color/teal_200"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/white"
+        app:hintTextColor="@color/teal_200"
+        app:helperTextTextColor="@color/errorColor"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRegisterEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineRegisterStart"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutRegisterEmail"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:startIconTint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditTextPasswordR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutRegisterPasswordConf"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Password"
+        android:textColorHint="@color/white"
+        app:boxStrokeColor="@color/teal_200"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/white"
+        app:hintTextColor="@color/teal_200"
+        app:helperTextTextColor="@color/errorColor"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRegisterEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineRegisterStart"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutRegisterPassword"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:startIconTint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditTextPasswordConfR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/rgisterRegisterButton"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/btn_height"
+        android:backgroundTint="@color/btnColor"
+        android:text="Register"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_28sdp"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutRegisterPasswordConf"
+        app:layout_constraintStart_toStartOf="@id/guidelineRegisterStart"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRegisterEnd" />
+
+    <TextView
+        android:id="@+id/tvHasAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aleady have an account? login"
+        android:fontFamily="@font/light"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineRegisterStart"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRegisterEnd" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRegisterStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRegisterEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
