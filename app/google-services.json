@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1058085315301",
+    "project_id": "airmovies-c2cf9",
+    "storage_bucket": "airmovies-c2cf9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058085315301:android:297274ee366aa72b47ea0c",
+        "android_client_info": {
+          "package_name": "com.example.airmovies"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE1ZOpdpLGPjIqOYwrg8O3GBAZ8YhF6Iw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
