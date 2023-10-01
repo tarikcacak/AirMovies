@@ -1,5 +1,6 @@
 package com.example.airmovies.fragments.loginfragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,15 +12,18 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.airmovies.R
+import com.example.airmovies.activities.HomeActivity
 import com.example.airmovies.databinding.FragmentLoginBinding
 import com.example.airmovies.databinding.FragmentRegisterBinding
 import com.example.airmovies.util.RegisterValidation
 import com.example.airmovies.util.Resource
 import com.example.airmovies.viewmodels.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
@@ -69,9 +73,12 @@ class LoginFragment : Fragment() {
                     is Resource.Success ->{
                         binding.loginProgressBar.visibility = View.GONE
                         Toast.makeText(requireContext(),"Succesfully logged in!", Toast.LENGTH_SHORT).show()
+                        Intent(requireActivity(), HomeActivity::class.java).also { intent ->
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
+                        }
                     }
                     else -> Unit
-
                 }
             }
         }
@@ -80,18 +87,18 @@ class LoginFragment : Fragment() {
             viewModel.validation.collect{ validation ->
                 if (validation.email is RegisterValidation.Failed){
                     withContext(Dispatchers.Main){
-                        binding.textInputEditTextEmailR.apply {
+                        binding.textInputEditTextEmail.apply {
                             requestFocus()
-                            binding.textInputLayoutRegisterEmail.helperText = validation.email.message
+                            binding.textInputLayoutLoginEmail.helperText = validation.email.message
                         }
                     }
                 }
 
                 if (validation.password is RegisterValidation.Failed){
                     withContext(Dispatchers.Main){
-                        binding.textInputEditTextPasswordR.apply {
+                        binding.textInputEditTextPassword.apply {
                             requestFocus()
-                            binding.textInputLayoutRegisterPassword.helperText = validation.password.message
+                            binding.textInputLayoutLoginPassword.helperText = validation.password.message
                         }
                     }
                 }

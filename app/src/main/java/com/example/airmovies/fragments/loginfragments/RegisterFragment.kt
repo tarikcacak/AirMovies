@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -34,6 +35,14 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_registerFragment_to_optionFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
+
         return binding.root
     }
 
