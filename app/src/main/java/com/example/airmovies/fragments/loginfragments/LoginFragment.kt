@@ -15,6 +15,7 @@ import com.example.airmovies.R
 import com.example.airmovies.activities.HomeActivity
 import com.example.airmovies.databinding.FragmentLoginBinding
 import com.example.airmovies.databinding.FragmentRegisterBinding
+import com.example.airmovies.dialog.setupBottomSheetDialog
 import com.example.airmovies.util.RegisterValidation
 import com.example.airmovies.util.Resource
 import com.example.airmovies.viewmodels.LoginViewModel
@@ -56,6 +57,17 @@ class LoginFragment : Fragment() {
             val email = binding.textInputEditTextEmail.text.toString().trim()
             val password = binding.textInputEditTextPassword.text.toString()
             viewModel.login(email, password)
+        }
+
+        binding.tvForgotPassword.setOnClickListener {
+            setupBottomSheetDialog { email ->
+                if (!email.isNullOrEmpty()) {
+                    viewModel.resetPassword(email)
+                    Toast.makeText(requireContext(), "Reset link is sent to your email", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(requireContext(), "You didn't give the email", Toast.LENGTH_LONG).show()
+                }
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -104,5 +116,10 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
