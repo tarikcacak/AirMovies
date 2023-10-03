@@ -3,9 +3,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.homefragments.HomeFragment"
-    android:background="#D8000000">
+    android:background="#EB000000">
 
+    <TextView
+        android:id="@+id/tvPopularMovies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Popular Movies"
+        android:textColor="@color/white"
+        android:fontFamily="@font/boldfont"
+        android:textSize="@dimen/_20ssp"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewPopularMovies"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        app:layout_constraintStart_toStartOf="@id/tvPopularMovies"
+        app:layout_constraintTop_toBottomOf="@id/tvPopularMovies" />
+
+    <TextView
+        android:id="@+id/tvPopularTvShows"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Popular TV Shows"
+        android:textColor="@color/white"
+        android:fontFamily="@font/boldfont"
+        android:textSize="@dimen/_20ssp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        app:layout_constraintTop_toBottomOf="@id/recViewPopularMovies"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewPopularTvShows"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        app:layout_constraintStart_toStartOf="@id/tvPopularMovies"
+        app:layout_constraintTop_toBottomOf="@id/tvPopularTvShows" />
+
+    <TextView
+        android:id="@+id/tvCategories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Popular TV Shows"
+        android:textColor="@color/white"
+        android:fontFamily="@font/boldfont"
+        android:textSize="@dimen/_20ssp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        app:layout_constraintTop_toBottomOf="@id/recViewPopularTvShows"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
