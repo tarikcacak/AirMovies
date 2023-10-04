@@ -7,7 +7,7 @@ object RetrofitInstance {
 
     val api: MovieApi by lazy {
         Retrofit.Builder()
-            .baseUrl("https://www.themealdb.com/api/json/v1/1/")
+            .baseUrl("https://api.themoviedb.org/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(MovieApi::class.java)

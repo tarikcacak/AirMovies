@@ -1,6 +1,7 @@
 package com.example.airmovies.viewmodels
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.airmovies.model.movie.PopularMoviesList
@@ -28,5 +29,9 @@ class HomeViewModel: ViewModel() {
                 Log.d("HomeViewModel", t.message.toString())
             }
         })
+    }
+
+    fun observePopularMoviesLiveData(): LiveData<List<PopularMoviesResult>> {
+        return popularMoviesLiveData
     }
 }

@@ -22,7 +22,7 @@ class PopularMoviesAdapter() : RecyclerView.Adapter<PopularMoviesAdapter.Popular
 
     override fun onBindViewHolder(holder: PopularMoviesViewHolder, position: Int) {
         Glide.with(holder.itemView)
-            .load(movieList[position].posterPath)
+            .load("https://image.tmdb.org/t/p/w500" + movieList!![position].posterPath)
             .into(holder.binding.ivPopularMovie)
 
         holder.binding.tvPopularMovie.text = movieList[position].title
