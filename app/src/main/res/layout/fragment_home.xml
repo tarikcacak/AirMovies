@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.homefragments.HomeFragment"
-    android:background="#EB000000">
+    android:background="@color/homeFragmentsBackground">
 
     <TextView
         android:id="@+id/tvPopularMovies"
@@ -23,7 +23,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recViewPopularMovies"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_120sdp"
+        android:layout_height="@dimen/_175sdp"
         android:layout_marginTop="@dimen/_18sdp"
         app:layout_constraintStart_toStartOf="@id/tvPopularMovies"
         app:layout_constraintTop_toBottomOf="@id/tvPopularMovies" />
@@ -44,7 +44,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recViewPopularTvShows"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_120sdp"
+        android:layout_height="@dimen/_175sdp"
         android:layout_marginTop="@dimen/_18sdp"
         app:layout_constraintStart_toStartOf="@id/tvPopularMovies"
         app:layout_constraintTop_toBottomOf="@id/tvPopularTvShows" />
@@ -53,7 +53,7 @@
         android:id="@+id/tvCategories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Popular TV Shows"
+        android:text="Categories"
         android:textColor="@color/white"
         android:fontFamily="@font/boldfont"
         android:textSize="@dimen/_20ssp"
