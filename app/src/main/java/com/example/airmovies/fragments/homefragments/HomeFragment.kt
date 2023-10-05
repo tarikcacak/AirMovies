@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.airmovies.adapters.PopularMoviesAdapter
@@ -12,6 +13,7 @@ import com.example.airmovies.adapters.PopularTvShowsAdapter
 import com.example.airmovies.databinding.FragmentHomeBinding
 import com.example.airmovies.model.movie.PopularMoviesResult
 import com.example.airmovies.model.tv.PopularTvShowsResult
+import com.example.airmovies.util.Resource
 import com.example.airmovies.viewmodels.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -47,10 +49,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         preparePopularMoviesRecyclerView()
+        binding.pbPopularMovies.visibility = View.VISIBLE
         viewModel.getPopularMovies()
         observePopularMovies()
 
         preparePopularTvShowsRecyclerView()
+        binding.pbPopularTvShows.visibility = View.VISIBLE
         viewModel.getPopularTvShows()
         observePopularTvShows()
 
@@ -67,6 +71,7 @@ class HomeFragment : Fragment() {
         viewModel.observePopularMoviesLiveData().observe(viewLifecycleOwner
         ) { movieList ->
             popularMoviesAdapter.setMovies(movieList = movieList as ArrayList<PopularMoviesResult>)
+            binding.pbPopularMovies.visibility = View.GONE
         }
     }
 
@@ -81,6 +86,7 @@ class HomeFragment : Fragment() {
         viewModel.observePopularTvShowsLiveData().observe(viewLifecycleOwner
         ) { tvShowsList ->
             popularTvShowsAdapter.setTvShows(tvShowList = tvShowsList as ArrayList<PopularTvShowsResult>)
+            binding.pbPopularTvShows.visibility = View.GONE
         }
     }
 }

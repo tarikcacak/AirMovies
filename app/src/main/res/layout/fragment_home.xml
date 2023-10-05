@@ -16,61 +16,113 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvPopularMovies"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Popular Movies"
-        android:textColor="@color/white"
-        android:fontFamily="@font/boldfont"
-        android:textSize="@dimen/_20ssp"
-        android:layout_marginTop="@dimen/_24sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <ProgressBar
+                android:id="@+id/pbPopularMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/tvPopularTvShows"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPopularMovies"
+                android:visibility="gone" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recViewPopularMovies"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_240sdp"
-        android:layout_marginTop="@dimen/_18sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPopularMovies" />
+            <ProgressBar
+                android:id="@+id/pbPopularTvShows"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/tvCategories"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPopularTvShows"
+                android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/tvPopularTvShows"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Popular TV Shows"
-        android:textColor="@color/white"
-        android:fontFamily="@font/boldfont"
-        android:textSize="@dimen/_20ssp"
-        android:layout_marginTop="@dimen/_18sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        app:layout_constraintTop_toBottomOf="@id/recViewPopularMovies"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/tvPopularMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:fontFamily="@font/boldfont"
+                android:text="Popular Movies"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recViewPopularTvShows"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_240sdp"
-        android:layout_marginTop="@dimen/_18sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPopularTvShows" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recViewPopularMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_240sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPopularMovies" />
 
-    <TextView
-        android:id="@+id/tvCategories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Categories"
-        android:textColor="@color/white"
-        android:fontFamily="@font/boldfont"
-        android:textSize="@dimen/_20ssp"
-        android:layout_marginTop="@dimen/_18sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        app:layout_constraintTop_toBottomOf="@id/recViewPopularTvShows"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/tvPopularTvShows"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:fontFamily="@font/boldfont"
+                android:text="Popular TV Shows"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recViewPopularMovies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recViewPopularTvShows"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_240sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPopularTvShows" />
+
+            <TextView
+                android:id="@+id/tvRecentMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:fontFamily="@font/boldfont"
+                android:text="Recent Movies"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recViewPopularTvShows" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recViewRecentMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_240sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRecentMovies" />
+
+            <TextView
+                android:id="@+id/tvComingSoon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:fontFamily="@font/boldfont"
+                android:text="Coming Soon"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recViewRecentMovies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recViewComingSoon"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_240sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvComingSoon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
