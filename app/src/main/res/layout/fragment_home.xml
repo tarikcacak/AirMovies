@@ -20,23 +20,49 @@
                 android:id="@+id/pbPopularMovies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:indeterminateTint="@color/primaryColor"
                 app:layout_constraintBottom_toTopOf="@id/tvPopularTvShows"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvPopularMovies"
-                android:visibility="gone" />
+                app:layout_constraintTop_toBottomOf="@id/tvPopularMovies" />
 
             <ProgressBar
                 android:id="@+id/pbPopularTvShows"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/tvCategories"
+                android:visibility="gone"
+                android:indeterminateTint="@color/primaryColor"
+                app:layout_constraintBottom_toTopOf="@id/tvRecentMovies"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvPopularTvShows"
-                android:visibility="gone" />
+                app:layout_constraintTop_toBottomOf="@id/tvPopularTvShows" />
+
+            <ProgressBar
+                android:id="@+id/pbRecentMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:indeterminateTint="@color/primaryColor"
+                app:layout_constraintBottom_toTopOf="@id/tvTopRatedMovies"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRecentMovies" />
+
+            <ProgressBar
+                android:id="@+id/pbTopRatedMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:indeterminateTint="@color/primaryColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTopRatedMovies" />
 
             <TextView
                 android:id="@+id/tvPopularMovies"
@@ -103,26 +129,27 @@
                 app:layout_constraintTop_toBottomOf="@id/tvRecentMovies" />
 
             <TextView
-                android:id="@+id/tvComingSoon"
+                android:id="@+id/tvTopRatedMovies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_18sdp"
                 android:fontFamily="@font/boldfont"
-                android:text="Coming Soon"
+                android:text="Top Rated Movies"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_20ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recViewRecentMovies" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recViewComingSoon"
+                android:id="@+id/recViewTopRatedMovies"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_240sdp"
                 android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginBottom="@dimen/_18sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvComingSoon" />
+                app:layout_constraintTop_toBottomOf="@id/tvTopRatedMovies" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

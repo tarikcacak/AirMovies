@@ -33,6 +33,9 @@ class LoginViewModel @Inject constructor(
 
     fun login(email: String, password: String) {
         if (checkValidation(email, password)) {
+            viewModelScope.launch {
+                _login.emit(Resource.Loading())
+            }
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
                     viewModelScope.launch {
