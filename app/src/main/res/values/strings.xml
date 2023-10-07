@@ -2,4 +2,6 @@
     <string name="app_name">AirMovies</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut gravida odio. Maecenas sit amet rhoncus justo. Nulla facilisi. Praesent consectetur quam eu justo tincidunt, eget ullamcorper justo blandit. Sed id metus eget orci lobortis dignissim. Sed vel libero non quam tincidunt luctus in ac metus.
+    </string>
 </resources>
