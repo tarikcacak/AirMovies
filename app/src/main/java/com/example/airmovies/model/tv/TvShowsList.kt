@@ -3,7 +3,7 @@ package com.example.airmovies.model.tv
 
 import com.google.gson.annotations.SerializedName
 
-data class PopularTvShowsList(
+data class TvShowsList(
     @SerializedName("results")
-    val results: List<PopularTvShowsResult>
+    val results: List<TvShowsResult>
 )

@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.airmovies.R
 import com.example.airmovies.adapters.PopularMoviesAdapter
 import com.example.airmovies.adapters.PopularTvShowsAdapter
 import com.example.airmovies.adapters.RecentMoviesAdapter
 import com.example.airmovies.adapters.TopRatedMoviesAdapter
+import com.example.airmovies.adapters.TopRatedTvShowsAdapter
 import com.example.airmovies.databinding.FragmentHomeBinding
-import com.example.airmovies.model.movie.PopularMoviesResult
-import com.example.airmovies.model.movie.RecentMoviesResult
-import com.example.airmovies.model.movie.TopRatedMoviesResult
-import com.example.airmovies.model.tv.PopularTvShowsResult
+import com.example.airmovies.model.movie.MoviesResult
+import com.example.airmovies.model.tv.TvShowsResult
 import com.example.airmovies.viewmodels.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -27,13 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var popularTvShowsAdapter: PopularTvShowsAdapter
     private lateinit var recentMoviesAdapter: RecentMoviesAdapter
     private lateinit var topRatedMoviesAdapter: TopRatedMoviesAdapter
-
-    companion object {
-        const val MOVIE_ID = "package com.example.airmovies.fragments.homefragments.movieId"
-        const val MOVIE_NAME = "package com.example.airmovies.fragments.homefragments.movieName"
-        const val MOVIE_IMG = "package com.example.airmovies.fragments.homefragments.movieImg"
-        const val GENRE = "package com.example.airmovies.fragments.homefragments.movieGenre"
-    }
+    private lateinit var topRatedTvShowsAdapter: TopRatedTvShowsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +36,7 @@ class HomeFragment : Fragment() {
         popularTvShowsAdapter = PopularTvShowsAdapter()
         recentMoviesAdapter = RecentMoviesAdapter()
         topRatedMoviesAdapter = TopRatedMoviesAdapter()
+        topRatedTvShowsAdapter = TopRatedTvShowsAdapter()
     }
 
     override fun onCreateView(
@@ -74,6 +70,14 @@ class HomeFragment : Fragment() {
         viewModel.getTopRatedMovies()
         observeTopRatedMovies()
 
+        prepareTopRatedTvShowsRecyclerView()
+        binding.pbTopRatedTvShows.visibility = View.VISIBLE
+        viewModel.getTopRatedTvShows()
+        observeTopRatedTvShoes()
+
+        onMovieClickListener()
+        onTvShowClickListener()
+
     }
 
     private fun preparePopularMoviesRecyclerView() {
@@ -86,7 +90,7 @@ class HomeFragment : Fragment() {
     private fun observePopularMovies() {
         viewModel.observePopularMoviesLiveData().observe(viewLifecycleOwner
         ) { movieList ->
-            popularMoviesAdapter.setMovies(movieList = movieList as ArrayList<PopularMoviesResult>)
+            popularMoviesAdapter.setMovies(movieList = movieList as ArrayList<MoviesResult>)
             binding.pbPopularMovies.visibility = View.GONE
         }
     }
@@ -101,7 +105,7 @@ class HomeFragment : Fragment() {
     private fun observePopularTvShows() {
         viewModel.observePopularTvShowsLiveData().observe(viewLifecycleOwner
         ) { tvShowsList ->
-            popularTvShowsAdapter.setTvShows(tvShowList = tvShowsList as ArrayList<PopularTvShowsResult>)
+            popularTvShowsAdapter.setTvShows(tvShowList = tvShowsList as ArrayList<TvShowsResult>)
             binding.pbPopularTvShows.visibility = View.GONE
         }
     }
@@ -116,7 +120,7 @@ class HomeFragment : Fragment() {
     private fun observeRecentMovies() {
         viewModel.observeRecentMoviesLiveData().observe(viewLifecycleOwner
         ) { moviesList ->
-            recentMoviesAdapter.setRecentMovies(moviesList = moviesList as ArrayList<RecentMoviesResult>)
+            recentMoviesAdapter.setRecentMovies(moviesList = moviesList as ArrayList<MoviesResult>)
             binding.pbRecentMovies.visibility = View.GONE
         }
     }
@@ -131,8 +135,75 @@ class HomeFragment : Fragment() {
     private fun observeTopRatedMovies() {
         viewModel.observeTopRatedMoviesLiveData().observe(viewLifecycleOwner
         ) { moviesList ->
-            topRatedMoviesAdapter.setTopRatedMovies(moviesList = moviesList as ArrayList<TopRatedMoviesResult>)
+            topRatedMoviesAdapter.setTopRatedMovies(moviesList = moviesList as ArrayList<MoviesResult>)
             binding.pbTopRatedMovies.visibility = View.GONE
         }
+    }
+
+    private fun prepareTopRatedTvShowsRecyclerView() {
+        binding.recViewTopRatedTvShows.apply {
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = topRatedTvShowsAdapter
+        }
+    }
+
+    private fun observeTopRatedTvShoes() {
+        viewModel.observeTopRatedTvShowsLiveData().observe(viewLifecycleOwner
+        ) { tvShowsList ->
+            topRatedTvShowsAdapter.setTopRatedTvShows(tvShowsList = tvShowsList as ArrayList<TvShowsResult>)
+            binding.pbTopRatedTvShows.visibility = View.GONE
+        }
+    }
+
+    private fun onMovieClickListener() {
+
+        popularMoviesAdapter.setOnPopularMovieItemClickListener { movie ->
+            val bundle = Bundle().apply {
+                putString("isMovie", "0")
+                putString("id", movie.id.toString())
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment, bundle)
+        }
+
+        recentMoviesAdapter.setOnRecentMovieItemClickListener { movie ->
+            val bundle = Bundle().apply {
+                putString("isMovie", "0")
+                putString("id", movie.id.toString())
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment, bundle)
+        }
+
+        topRatedMoviesAdapter.setOnTopRatedMovieItemClickListener { movie ->
+            val bundle = Bundle().apply {
+                putString("isMovie", "0")
+                putString("id", movie.id.toString())
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment, bundle)
+        }
+    }
+
+    private fun onTvShowClickListener() {
+
+        popularTvShowsAdapter.setOnPopularTvShowItemClickListener { tvShow ->
+            val bundle = Bundle().apply {
+                putString("isMovie", "1")
+                putString("id", tvShow.id.toString())
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment, bundle)
+        }
+
+        topRatedTvShowsAdapter.setOnTopRatedTvShowItemClickListener { tvShow ->
+            val bundle = Bundle().apply {
+                putString("isMovie", "1")
+                putString("id", tvShow.id.toString())
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment, bundle)
+        }
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

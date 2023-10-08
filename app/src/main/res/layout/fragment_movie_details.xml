@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".activities.MovieDetailsActivity">
+    tools:context=".activities.HomeActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -81,6 +81,47 @@
                 tools:layout_editor_absoluteX="0dp"
                 app:layout_constraintStart_toStartOf="@id/tvTitle"
                 app:layout_constraintEnd_toEndOf="@id/fabFavorites"/>
+
+            <TextView
+                android:id="@+id/tvActors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Actors"
+                android:fontFamily="@font/light"
+                android:textColor="@color/primaryLightColor"
+                android:textSize="@dimen/_25ssp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/tvOverview"
+                app:layout_constraintStart_toStartOf="@id/rbMovieRating" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recViewActors"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_240sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/tvActors"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSimilarMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Similar Movies"
+                android:fontFamily="@font/light"
+                android:textColor="@color/primaryLightColor"
+                android:textSize="@dimen/_25ssp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/recViewActors"
+                app:layout_constraintStart_toStartOf="@id/rbMovieRating" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recViewSimilarMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_240sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/tvSimilarMovies"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

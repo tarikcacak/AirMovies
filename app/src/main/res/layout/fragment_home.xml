@@ -58,11 +58,23 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:indeterminateTint="@color/primaryColor"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tvTopRatedTvShows"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTopRatedMovies" />
+
+            <ProgressBar
+                android:id="@+id/pbTopRatedTvShows"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:indeterminateTint="@color/primaryColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTopRatedTvShows" />
 
             <TextView
                 android:id="@+id/tvPopularMovies"
@@ -146,10 +158,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_240sdp"
                 android:layout_marginTop="@dimen/_18sdp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTopRatedMovies" />
+
+            <TextView
+                android:id="@+id/tvTopRatedTvShows"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:fontFamily="@font/boldfont"
+                android:text="Top Rated TV Shows"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recViewTopRatedMovies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recViewTopRatedTvShows"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_240sdp"
+                android:layout_marginTop="@dimen/_18sdp"
                 android:layout_marginBottom="@dimen/_18sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTopRatedMovies" />
+                app:layout_constraintTop_toBottomOf="@id/tvTopRatedTvShows" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

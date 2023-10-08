@@ -3,7 +3,7 @@ package com.example.airmovies.model.movie
 
 import com.google.gson.annotations.SerializedName
 
-data class PopularMoviesResult(
+data class MoviesResult(
     @SerializedName("genre_ids")
     val genreIds: List<Int>,
     @SerializedName("id")

@@ -5,13 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.airmovies.databinding.PopularMoviesBinding
-import com.example.airmovies.model.movie.PopularMoviesResult
+import com.example.airmovies.model.movie.MoviesResult
 
 class PopularMoviesAdapter() : RecyclerView.Adapter<PopularMoviesAdapter.PopularMoviesViewHolder>() {
 
-    private var movieList = ArrayList<PopularMoviesResult>()
+    var onItemClick: ((MoviesResult) -> Unit)? = null
+    private var movieList = ArrayList<MoviesResult>()
 
-    fun setMovies(movieList: ArrayList<PopularMoviesResult>) {
+    fun setMovies(movieList: ArrayList<MoviesResult>) {
         this.movieList = movieList
         notifyDataSetChanged()
     }
@@ -27,10 +28,17 @@ class PopularMoviesAdapter() : RecyclerView.Adapter<PopularMoviesAdapter.Popular
 
         holder.binding.tvPopularMovie.text = movieList[position].title
         holder.binding.rbPopularMovie.rating = movieList[position].voteAverage.toFloat()
+        holder.itemView.setOnClickListener {
+            onItemClick!!.invoke(movieList!![position])
+        }
     }
 
     override fun getItemCount(): Int {
         return movieList.size
+    }
+
+    fun setOnPopularMovieItemClickListener(movie: (MoviesResult) -> Unit) {
+        onItemClick = movie
     }
 
     class PopularMoviesViewHolder(var binding: PopularMoviesBinding): RecyclerView.ViewHolder(binding.root)

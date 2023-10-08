@@ -3,7 +3,7 @@ package com.example.airmovies.model.tv
 
 import com.google.gson.annotations.SerializedName
 
-data class PopularTvShowsResult(
+data class TvShowsResult(
     @SerializedName("backdrop_path")
     val backdropPath: String,
     @SerializedName("first_air_date")

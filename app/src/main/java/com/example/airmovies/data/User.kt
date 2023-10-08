@@ -7,5 +7,4 @@ data class User (
     val email: String,
     val password: String,
     val imgPath: String = "",
-    val favorites: MutableList<String>? = null
 )

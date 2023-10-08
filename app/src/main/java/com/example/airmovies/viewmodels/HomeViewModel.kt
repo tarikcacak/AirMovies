@@ -4,106 +4,124 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.airmovies.model.movie.PopularMoviesList
-import com.example.airmovies.model.movie.PopularMoviesResult
-import com.example.airmovies.model.movie.RecentMoviesList
-import com.example.airmovies.model.movie.RecentMoviesResult
-import com.example.airmovies.model.movie.TopRatedMoviesList
-import com.example.airmovies.model.movie.TopRatedMoviesResult
-import com.example.airmovies.model.tv.PopularTvShowsList
-import com.example.airmovies.model.tv.PopularTvShowsResult
+import com.example.airmovies.model.movie.MoviesList
+import com.example.airmovies.model.movie.MoviesResult
+import com.example.airmovies.model.tv.TvShowsList
+import com.example.airmovies.model.tv.TvShowsResult
 import com.example.airmovies.retrofit.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class HomeViewModel: ViewModel() {
-    private var popularMoviesLiveData = MutableLiveData<List<PopularMoviesResult>>()
-    private var popularTvShowsLiveData = MutableLiveData<List<PopularTvShowsResult>>()
-    private var recentMoviesLiveData = MutableLiveData<List<RecentMoviesResult>>()
-    private var topRatedMoviesLiveData= MutableLiveData<List<TopRatedMoviesResult>>()
+    private var popularMoviesLiveData = MutableLiveData<List<MoviesResult>>()
+    private var popularTvShowsLiveData = MutableLiveData<List<TvShowsResult>>()
+    private var recentMoviesLiveData = MutableLiveData<List<MoviesResult>>()
+    private var topRatedMoviesLiveData = MutableLiveData<List<MoviesResult>>()
+    private var topRatedTvShowsLiveData = MutableLiveData<List<TvShowsResult>>()
 
     fun getPopularMovies() {
-        RetrofitInstance.api.getPopularMovies().enqueue(object : Callback<PopularMoviesList> {
+        RetrofitInstance.api.getPopularMovies().enqueue(object : Callback<MoviesList> {
             override fun onResponse(
-                call: Call<PopularMoviesList>,
-                response: Response<PopularMoviesList>
+                call: Call<MoviesList>,
+                response: Response<MoviesList>
             ) {
                 if (response.body() != null) {
                     popularMoviesLiveData.value = response.body()!!.results
                 }
             }
 
-            override fun onFailure(call: Call<PopularMoviesList>, t: Throwable) {
+            override fun onFailure(call: Call<MoviesList>, t: Throwable) {
                 Log.e("HomeViewModel", t.message.toString())
             }
         })
     }
 
     fun getPopularTvShows() {
-        RetrofitInstance.api.getPopularTvShows().enqueue(object : Callback<PopularTvShowsList> {
+        RetrofitInstance.api.getPopularTvShows().enqueue(object : Callback<TvShowsList> {
             override fun onResponse(
-                call: Call<PopularTvShowsList>,
-                response: Response<PopularTvShowsList>
+                call: Call<TvShowsList>,
+                response: Response<TvShowsList>
             ) {
                 if (response.body() != null) {
                     popularTvShowsLiveData.value = response.body()?.results
                 }
             }
 
-            override fun onFailure(call: Call<PopularTvShowsList>, t: Throwable) {
+            override fun onFailure(call: Call<TvShowsList>, t: Throwable) {
                 Log.e("HomeViewModel", t.message.toString())
             }
         })
     }
 
     fun getRecentMovies() {
-        RetrofitInstance.api.getRecentMovies().enqueue(object : Callback<RecentMoviesList> {
+        RetrofitInstance.api.getRecentMovies().enqueue(object : Callback<MoviesList> {
             override fun onResponse(
-                call: Call<RecentMoviesList>,
-                response: Response<RecentMoviesList>
+                call: Call<MoviesList>,
+                response: Response<MoviesList>
             ) {
                 if (response.body() != null) {
                     recentMoviesLiveData.value = response.body()!!.results
                 }
             }
 
-            override fun onFailure(call: Call<RecentMoviesList>, t: Throwable) {
+            override fun onFailure(call: Call<MoviesList>, t: Throwable) {
                 Log.e("HomeViewModel", t.message.toString())
             }
         })
     }
 
     fun getTopRatedMovies() {
-        RetrofitInstance.api.getTopRatedMovies().enqueue(object : Callback<TopRatedMoviesList> {
+        RetrofitInstance.api.getTopRatedMovies().enqueue(object : Callback<MoviesList> {
             override fun onResponse(
-                call: Call<TopRatedMoviesList>,
-                response: Response<TopRatedMoviesList>
+                call: Call<MoviesList>,
+                response: Response<MoviesList>
             ) {
                 if (response.body() != null) {
                     topRatedMoviesLiveData.value = response.body()!!.results
                 }
             }
 
-            override fun onFailure(call: Call<TopRatedMoviesList>, t: Throwable) {
+            override fun onFailure(call: Call<MoviesList>, t: Throwable) {
                 Log.e("HomeViewModel", t.message.toString())
             }
         })
     }
 
-    fun observePopularMoviesLiveData(): LiveData<List<PopularMoviesResult>> {
+    fun getTopRatedTvShows() {
+        RetrofitInstance.api.getTopRatedTvShows().enqueue(object : Callback<TvShowsList> {
+            override fun onResponse(
+                call: Call<TvShowsList>,
+                response: Response<TvShowsList>
+            ) {
+                if (response.body() != null) {
+                    topRatedTvShowsLiveData.value = response.body()!!.results
+                }
+            }
+
+            override fun onFailure(call: Call<TvShowsList>, t: Throwable) {
+                Log.e("HomeViewModel", t.message.toString())
+            }
+        })
+    }
+
+    fun observePopularMoviesLiveData(): LiveData<List<MoviesResult>> {
         return popularMoviesLiveData
     }
 
-    fun observePopularTvShowsLiveData(): LiveData<List<PopularTvShowsResult>> {
+    fun observePopularTvShowsLiveData(): LiveData<List<TvShowsResult>> {
         return popularTvShowsLiveData
     }
 
-    fun observeRecentMoviesLiveData(): LiveData<List<RecentMoviesResult>> {
+    fun observeRecentMoviesLiveData(): LiveData<List<MoviesResult>> {
         return recentMoviesLiveData
     }
 
-    fun observeTopRatedMoviesLiveData(): LiveData<List<TopRatedMoviesResult>> {
+    fun observeTopRatedMoviesLiveData(): LiveData<List<MoviesResult>> {
         return topRatedMoviesLiveData
+    }
+
+    fun observeTopRatedTvShowsLiveData(): LiveData<List<TvShowsResult>> {
+        return topRatedTvShowsLiveData
     }
 }
