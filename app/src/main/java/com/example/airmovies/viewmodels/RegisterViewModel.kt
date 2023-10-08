@@ -2,7 +2,7 @@ package com.example.airmovies.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.airmovies.data.User
+import com.example.airmovies.data.user.User
 import com.example.airmovies.util.RegisterFieldState
 import com.example.airmovies.util.RegisterValidation
 import com.example.airmovies.util.Resource

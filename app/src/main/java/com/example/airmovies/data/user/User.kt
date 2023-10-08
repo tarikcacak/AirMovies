@@ -1,4 +1,4 @@
-package com.example.airmovies.data
+package com.example.airmovies.data.user
 
 import android.text.Editable
 

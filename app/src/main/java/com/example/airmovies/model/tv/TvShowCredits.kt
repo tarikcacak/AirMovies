@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class TvShowCredits(
     @SerializedName("cast")
-    val cast: List<Cast>,
+    val cast: List<TvShowCast>,
     @SerializedName("id")
     val id: Int
 )

@@ -13,7 +13,7 @@ data class MovieDetails(
     @SerializedName("budget")
     val budget: Int,
     @SerializedName("genres")
-    val genres: List<Genre>,
+    val genres: List<MovieGenre>,
     @SerializedName("homepage")
     val homepage: String,
     @SerializedName("id")

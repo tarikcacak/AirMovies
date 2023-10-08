@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.airmovies.R
-import com.example.airmovies.data.User
+import com.example.airmovies.data.user.User
 import com.example.airmovies.databinding.FragmentRegisterBinding
 import com.example.airmovies.util.RegisterValidation
 import com.example.airmovies.util.Resource

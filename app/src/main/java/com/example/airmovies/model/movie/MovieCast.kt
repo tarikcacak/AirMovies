@@ -3,7 +3,7 @@ package com.example.airmovies.model.movie
 
 import com.google.gson.annotations.SerializedName
 
-data class Cast(
+data class MovieCast(
     @SerializedName("adult")
     val adult: Boolean,
     @SerializedName("cast_id")
