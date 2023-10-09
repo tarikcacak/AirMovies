@@ -3,6 +3,7 @@ package com.example.airmovies.retrofit
 import com.example.airmovies.model.movie.MovieCredits
 import com.example.airmovies.model.movie.MovieDetails
 import com.example.airmovies.model.movie.MoviesList
+import com.example.airmovies.model.tv.TvShowCredits
 import com.example.airmovies.model.tv.TvShowDetails
 import com.example.airmovies.model.tv.TvShowsList
 import retrofit2.Call
@@ -41,7 +42,7 @@ interface MovieApi {
     fun getSimilarTvShows(@Path("series_id") seriesId: String): Call<TvShowsList>
 
     @GET("3/tv/{movie_id}/credits?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
-    fun getTvShowCredits(@Path("series_id") seriesId: String): Call<MovieCredits>
+    fun getTvShowCredits(@Path("series_id") seriesId: String): Call<TvShowCredits>
 
     @GET("3/tv/{movie_id}?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
     fun getTvShowDetails(@Path("series_id") seriesId: String): Call<TvShowDetails>

@@ -160,7 +160,7 @@ class HomeFragment : Fragment() {
         popularMoviesAdapter.setOnPopularMovieItemClickListener { movie ->
             val bundle = Bundle().apply {
                 putString("isMovie", "0")
-                putString("id", movie.id.toString())
+                putString("idMovie", movie.id.toString())
             }
             findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment, bundle)
         }
@@ -168,7 +168,7 @@ class HomeFragment : Fragment() {
         recentMoviesAdapter.setOnRecentMovieItemClickListener { movie ->
             val bundle = Bundle().apply {
                 putString("isMovie", "0")
-                putString("id", movie.id.toString())
+                putString("idMovie", movie.id.toString())
             }
             findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment, bundle)
         }
@@ -176,7 +176,7 @@ class HomeFragment : Fragment() {
         topRatedMoviesAdapter.setOnTopRatedMovieItemClickListener { movie ->
             val bundle = Bundle().apply {
                 putString("isMovie", "0")
-                putString("id", movie.id.toString())
+                putString("idMovie", movie.id.toString())
             }
             findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment, bundle)
         }
@@ -187,7 +187,7 @@ class HomeFragment : Fragment() {
         popularTvShowsAdapter.setOnPopularTvShowItemClickListener { tvShow ->
             val bundle = Bundle().apply {
                 putString("isMovie", "1")
-                putString("id", tvShow.id.toString())
+                putString("idTv", tvShow.id.toString())
             }
             findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment, bundle)
         }
@@ -195,7 +195,7 @@ class HomeFragment : Fragment() {
         topRatedTvShowsAdapter.setOnTopRatedTvShowItemClickListener { tvShow ->
             val bundle = Bundle().apply {
                 putString("isMovie", "1")
-                putString("id", tvShow.id.toString())
+                putString("idTv", tvShow.id.toString())
             }
             findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment, bundle)
         }
