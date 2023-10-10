@@ -29,13 +29,11 @@ class MovieDetailsFragment : Fragment() {
     private lateinit var idTv: String
     private lateinit var isMovie: String
     private var isClicked: Boolean = false
+    private var isMovieHelp: Boolean = false
+    private var toastHelper: Boolean = false
+    private var toastHelperSecond: Boolean = false
 
     private lateinit var posterPath: String
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,11 +46,21 @@ class MovieDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        toastHelper = false
+        toastHelperSecond = false
+
         getOnClickData()
         addToWatchlist()
 
         collectWatchlistMovie()
+        collectWatchlistTv()
 
+        observeMovieExists()
+        observeTvExists()
+
+        if (isMovie == "0") {
+
+        }
     }
 
     private fun getOnClickData() {
@@ -74,6 +82,10 @@ class MovieDetailsFragment : Fragment() {
 
     private fun addToWatchlist() {
         binding.fabAddWatchlist.setOnClickListener {
+
+            toastHelper = true
+            toastHelperSecond = true
+
             if (isMovie == "0") {
                 val movieWatchlist = MovieWatchlist(
                     idMovie,
@@ -105,7 +117,27 @@ class MovieDetailsFragment : Fragment() {
                         Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
                     }
                     is Resource.Success ->{
-                        Toast.makeText(requireContext(),"Succesfully saved", Toast.LENGTH_SHORT).show()
+                        if (toastHelper)
+                        Toast.makeText(requireContext(),"Successfully saved movie", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+    }
+
+    private fun collectWatchlistTv() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.watchlistTv.collect {
+                when(it){
+                    is Resource.Loading ->{
+                    }
+                    is Resource.Error ->{
+                        Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Success ->{
+                        if (toastHelper)
+                            Toast.makeText(requireContext(),"Successfully saved tv show", Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
                 }
@@ -117,8 +149,26 @@ class MovieDetailsFragment : Fragment() {
         viewModel.observeMovieExistsLiveData().observe(viewLifecycleOwner
         ) { exists ->
             if (exists == true) {
-
+                if (toastHelperSecond)
+                    Toast.makeText(context, "Movie already in you watchlist", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun observeTvExists() {
+        viewModel.observeTvExistsLiveData().observe(viewLifecycleOwner
+        ) { exists ->
+            if (exists == true) {
+                if (toastHelperSecond)
+                    Toast.makeText(context, "Tv show already in you watchlist", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun observeMovieCreditsLiveData() {
+        viewModel.observeMovieCreditsLiveData().observe(viewLifecycleOwner
+        ) {
+
         }
     }
 
