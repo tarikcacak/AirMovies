@@ -38,13 +38,13 @@ interface MovieApi {
     @GET("3/tv/top_rated?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
     fun getTopRatedTvShows(): Call<TvShowsList>
 
-    @GET("3/tv/{movie_id}/similar?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
+    @GET("3/tv/{series_id}/similar?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
     fun getSimilarTvShows(@Path("series_id") seriesId: String): Call<TvShowsList>
 
-    @GET("3/tv/{movie_id}/credits?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
+    @GET("3/tv/{series_id}/credits?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
     fun getTvShowCredits(@Path("series_id") seriesId: String): Call<TvShowCredits>
 
-    @GET("3/tv/{movie_id}?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
+    @GET("3/tv/{series_id}?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
     fun getTvShowDetails(@Path("series_id") seriesId: String): Call<TvShowDetails>
 
 }

@@ -33,5 +33,14 @@
         android:id="@+id/movieDetailsFragment"
         android:name="com.example.airmovies.fragments.homefragments.MovieDetailsFragment"
         android:label="fragment_movie_details"
-        tools:layout="@layout/fragment_movie_details" />
+        tools:layout="@layout/fragment_movie_details" >
+        <action
+            android:id="@+id/action_movieDetailsFragment_to_actorFragment"
+            app:destination="@id/actorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/actorFragment"
+        android:name="com.example.airmovies.ActorFragment"
+        android:label="fragment_actor"
+        tools:layout="@layout/fragment_actor" />
 </navigation>

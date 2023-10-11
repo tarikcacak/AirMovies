@@ -8,16 +8,23 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.airmovies.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.example.airmovies.adapters.ActorsAdapter
+import com.example.airmovies.adapters.SimilarItemsAdapter
 import com.example.airmovies.data.movie.MovieWatchlist
 import com.example.airmovies.data.tv.TvWatchlist
-import com.example.airmovies.databinding.FragmentHomeBinding
 import com.example.airmovies.databinding.FragmentMovieDetailsBinding
+import com.example.airmovies.model.movie.MovieCast
+import com.example.airmovies.model.movie.MoviesResult
+import com.example.airmovies.model.tv.TvShowCast
+import com.example.airmovies.model.tv.TvShowsResult
 import com.example.airmovies.util.Resource
 import com.example.airmovies.viewmodels.MovieDetailsViewModel
-import kotlinx.coroutines.flow.collect
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
 
     private var _binding: FragmentMovieDetailsBinding? = null
@@ -33,7 +40,16 @@ class MovieDetailsFragment : Fragment() {
     private var toastHelper: Boolean = false
     private var toastHelperSecond: Boolean = false
 
+    private lateinit var actorsAdapter: ActorsAdapter
+    private lateinit var similarItemsAdapter: SimilarItemsAdapter
+
     private lateinit var posterPath: String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        actorsAdapter = ActorsAdapter()
+        similarItemsAdapter = SimilarItemsAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,8 +75,22 @@ class MovieDetailsFragment : Fragment() {
         observeTvExists()
 
         if (isMovie == "0") {
-
+            binding.pbActors.visibility = View.VISIBLE
+            binding.pbSimilar.visibility = View.VISIBLE
+            observeMovieCreditsLiveData()
+            observeSimilarMoviesLiveData()
+            observeItemDetailsLiveData()
+        } else {
+            binding.pbActors.visibility = View.VISIBLE
+            binding.pbSimilar.visibility = View.VISIBLE
+            observeTvCreditsLiveData()
+            observeSimilarTvLiveData()
+            observeItemDetailsLiveData()
         }
+
+        prepareActorsRecyclerView()
+        prepareSimilarItemsRecyclerView()
+        setUpClickListeners()
     }
 
     private fun getOnClickData() {
@@ -81,7 +111,7 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun addToWatchlist() {
-        binding.fabAddWatchlist.setOnClickListener {
+        binding.fabFavorites.setOnClickListener {
 
             toastHelper = true
             toastHelperSecond = true
@@ -165,12 +195,79 @@ class MovieDetailsFragment : Fragment() {
         }
     }
 
-    private fun observeMovieCreditsLiveData() {
-        viewModel.observeMovieCreditsLiveData().observe(viewLifecycleOwner
-        ) {
-
+    private fun prepareActorsRecyclerView() {
+        binding.recViewActors.apply {
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = actorsAdapter
         }
     }
+
+    private fun prepareSimilarItemsRecyclerView() {
+        binding.recViewSimilarMovies.apply {
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = similarItemsAdapter
+        }
+    }
+
+    private fun observeMovieCreditsLiveData() {
+        viewModel.observeMovieCreditsLiveData().observe(viewLifecycleOwner
+        ) { actorsListMovie ->
+            actorsAdapter.setActorsMovie(actorsListMovie = actorsListMovie as ArrayList<MovieCast>)
+            binding.pbActors.visibility = View.GONE
+        }
+    }
+
+    private fun observeSimilarMoviesLiveData() {
+        viewModel.observeSimilarMoviesLiveData().observe(viewLifecycleOwner
+        ) { movieList ->
+            similarItemsAdapter.setSimilarMovies(movieList = movieList as ArrayList<MoviesResult>)
+            binding.pbSimilar.visibility = View.GONE
+        }
+    }
+
+    private fun observeTvCreditsLiveData() {
+        viewModel.observeTvCreditsLiveData().observe(viewLifecycleOwner
+        ) { actorsListTv ->
+            actorsAdapter.setActorsTv(actorsListTv = actorsListTv as ArrayList<TvShowCast>)
+            binding.pbActors.visibility = View.GONE
+        }
+    }
+
+    private fun observeSimilarTvLiveData() {
+        viewModel.observeSimilarTvLiveData().observe(viewLifecycleOwner
+        ) { tvShowList ->
+            similarItemsAdapter.setSimilarTv(tvShowList = tvShowList as ArrayList<TvShowsResult>)
+            binding.pbSimilar.visibility = View.GONE
+        }
+    }
+
+    private fun observeItemDetailsLiveData() {
+        if (isMovie == "0") {
+            viewModel.observeMovieDetailsLiveData().observe(viewLifecycleOwner
+            ) { movie ->
+                Glide.with(this@MovieDetailsFragment)
+                    .load("https://image.tmdb.org/t/p/w500" + movie!!.posterPath)
+                    .into(binding.imgPoster)
+
+                binding.tvTitle.text = movie!!.title
+                binding.rbMovieRating.rating = movie!!.voteAverage.toFloat()
+                binding.tvOverview.text = movie!!.overview
+            }
+        } else {
+            viewModel.observeTvDetailsLiveData().observe(viewLifecycleOwner
+            ) { tv ->
+                Glide.with(this@MovieDetailsFragment)
+                    .load("https://image.tmdb.org/t/p/w500" + tv!!.posterPath)
+                    .into(binding.imgPoster)
+
+                binding.tvTitle.text = tv!!.name
+                binding.rbMovieRating.rating = tv!!.voteAverage.toFloat()
+                binding.tvOverview.text = tv!!.overview
+            }
+        }
+    }
+
+
 
     private fun setUpClickListeners() = binding.apply {
 

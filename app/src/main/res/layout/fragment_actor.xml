@@ -13,36 +13,25 @@
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ProgressBar
-                android:id="@+id/pbActors"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminateTint="@color/primaryColor"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvActors"
-                app:layout_constraintBottom_toTopOf="@id/tvSimilarMovies"
-                android:visibility="gone" />
-
-            <ProgressBar
                 android:id="@+id/pbSimilar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminateTint="@color/primaryColor"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSimilarMovies"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:visibility="gone" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSimilarMovies" />
 
             <ImageView
                 android:id="@+id/imgPoster"
@@ -54,89 +43,58 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <RatingBar
-                android:id="@+id/rbMovieRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:progressBackgroundTint="#777575"
-                android:progressTint="@color/white"
-                android:rating="3"
-                android:layout_marginBottom="-30dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imgPoster"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabFavorites"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_watchlist"
-                android:tint="@color/white"
-                app:backgroundTint="@color/primaryLightColor"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginBottom="-30dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imgPoster"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:tint="@color/white" />
-
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Movie Title"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/boldfont"
+                android:text="Actor Name"
                 android:textColor="@color/primaryLightColor"
                 android:textSize="@dimen/_25ssp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@id/rbMovieRating"
-                app:layout_constraintStart_toStartOf="@id/rbMovieRating" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgPoster" />
 
             <TextView
                 android:id="@+id/tvOverview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
                 android:text="@string/lorem_ipsum"
                 android:textColor="@color/white"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:textSize="@dimen/_12ssp"
-                android:fontFamily="@font/light"
-                android:ellipsize="end"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-                tools:layout_editor_absoluteX="0dp"
-                app:layout_constraintStart_toStartOf="@id/tvTitle"
-                app:layout_constraintEnd_toEndOf="@id/fabFavorites"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvActors" />
 
             <TextView
                 android:id="@+id/tvActors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Actors"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/light"
+                android:text="Born: 28.10.2003"
                 android:textColor="@color/primaryLightColor"
                 android:textSize="@dimen/_25ssp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@id/tvOverview"
-                app:layout_constraintStart_toStartOf="@id/rbMovieRating" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recViewActors"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_240sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@id/tvActors"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
             <TextView
                 android:id="@+id/tvSimilarMovies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Similar"
                 android:fontFamily="@font/light"
+                android:text="Filmography"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:textColor="@color/primaryLightColor"
                 android:textSize="@dimen/_25ssp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@id/recViewActors"
-                app:layout_constraintStart_toStartOf="@id/rbMovieRating" />
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvOverview" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recViewSimilarMovies"
