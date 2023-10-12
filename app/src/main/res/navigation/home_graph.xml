@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/actorFragment"
-        android:name="com.example.airmovies.ActorFragment"
+        android:name="com.example.airmovies.fragments.homefragments.ActorFragment"
         android:label="fragment_actor"
         tools:layout="@layout/fragment_actor" />
 </navigation>

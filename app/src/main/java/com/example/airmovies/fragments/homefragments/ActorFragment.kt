@@ -1,10 +1,11 @@
-package com.example.airmovies
+package com.example.airmovies.fragments.homefragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.airmovies.R
 
 class ActorFragment : Fragment() {
 
