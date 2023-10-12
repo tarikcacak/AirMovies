@@ -158,20 +158,47 @@ class MovieDetailsViewModel @Inject constructor(
 
             Log.d("MovieDetailsViewModel", "the movie is added to your watchlist")
 
-            val map = mutableMapOf<String, Any>()
-            map["movieId"] = movieWatchlist.movieId!!
-            map["posterPath"] = movieWatchlist.posterPath!!
-            map["title"] = movieWatchlist.title!!
-            map["voteAverage"] = movieWatchlist.voteAverage!!
+            val userDocumentRef = firestore.collection("watchlist").document(currentUid)
 
-            firestore.collection("watchlist")
-                .document(currentUid)
-                .update("movie", FieldValue.arrayUnion(map))
-                .addOnSuccessListener {
-                    _watchlistMovie.value = Resource.Success(movieWatchlist)
-                }
-                .addOnFailureListener {
-                    _watchlistMovie.value = Resource.Error(it.message.toString())
+            userDocumentRef.get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        val map = mutableMapOf<String, Any>()
+                        map["movieId"] = movieWatchlist.movieId!!
+                        map["posterPath"] = movieWatchlist.posterPath!!
+                        map["title"] = movieWatchlist.title!!
+                        map["voteAverage"] = movieWatchlist.voteAverage!!
+
+                        userDocumentRef
+                            .update("movie", FieldValue.arrayUnion(map))
+                            .addOnSuccessListener {
+                                _watchlistMovie.value = Resource.Success(movieWatchlist)
+                            }
+                            .addOnFailureListener {
+                                _watchlistMovie.value = Resource.Error(it.message.toString())
+                            }
+
+                    } else {
+                        val initialWatchlist = mapOf(
+                            "uid" to currentUid,
+                            "movie" to listOf(
+                                mapOf(
+                                    "movieId" to movieWatchlist.movieId,
+                                    "posterPath" to movieWatchlist.posterPath,
+                                    "title" to movieWatchlist.title,
+                                    "voteAverage" to movieWatchlist.voteAverage
+                                )
+                            )
+                        )
+
+                        userDocumentRef.set(initialWatchlist)
+                            .addOnSuccessListener {
+                                _watchlistMovie.value = Resource.Success(movieWatchlist)
+                            }
+                            .addOnFailureListener {
+                                _watchlistMovie.value = Resource.Error(it.message.toString())
+                            }
+                    }
                 }
         }
     }
@@ -221,20 +248,47 @@ class MovieDetailsViewModel @Inject constructor(
 
             tvExistLiveData.value = false
 
-            val map = mutableMapOf<String, Any>()
-            map["tvId"] = tvWatchlist.tvId!!
-            map["posterPath"] = tvWatchlist.posterPath!!
-            map["title"] = tvWatchlist.title!!
-            map["voteAverage"] = tvWatchlist.voteAverage!!
+            val userDocumentRef = firestore.collection("watchlist").document(currentUid)
 
-            firestore.collection("watchlist")
-                .document(currentUid)
-                .update("tv", FieldValue.arrayUnion(map))
-                .addOnSuccessListener {
-                    _watchlistTv.value = Resource.Success(tvWatchlist)
-                }
-                .addOnFailureListener {
-                    _watchlistTv.value = Resource.Error(it.message.toString())
+                userDocumentRef.get()
+                    .addOnSuccessListener { documentSnapshot ->
+                        if (documentSnapshot.exists()) {
+                            val map = mutableMapOf<String, Any>()
+                            map["movieId"] = tvWatchlist.tvId!!
+                            map["posterPath"] = tvWatchlist.posterPath!!
+                            map["title"] = tvWatchlist.title!!
+                            map["voteAverage"] = tvWatchlist.voteAverage!!
+
+                            userDocumentRef
+                                .update("tv", FieldValue.arrayUnion(map))
+                                .addOnSuccessListener {
+                                    _watchlistTv.value = Resource.Success(tvWatchlist)
+                                }
+                                .addOnFailureListener {
+                                    _watchlistTv.value = Resource.Error(it.message.toString())
+                                }
+
+                        } else {
+                            val initialWatchlist = mapOf(
+                                "uid" to currentUid,
+                                "movie" to listOf(
+                                    mapOf(
+                                        "movieId" to tvWatchlist.tvId,
+                                        "posterPath" to tvWatchlist.posterPath,
+                                        "title" to tvWatchlist.title,
+                                        "voteAverage" to tvWatchlist.voteAverage
+                                    )
+                            )
+                        )
+
+                        userDocumentRef.set(initialWatchlist)
+                            .addOnSuccessListener {
+                                _watchlistTv.value = Resource.Success(tvWatchlist)
+                            }
+                            .addOnFailureListener {
+                                _watchlistMovie.value = Resource.Error(it.message.toString())
+                            }
+                    }
                 }
         }
     }

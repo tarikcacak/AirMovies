@@ -1,6 +1,7 @@
 package com.example.airmovies.fragments.homefragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -252,6 +253,7 @@ class MovieDetailsFragment : Fragment() {
                 binding.tvTitle.text = movie!!.title
                 binding.rbMovieRating.rating = movie!!.voteAverage.toFloat()
                 binding.tvOverview.text = movie!!.overview
+                posterPath = movie!!.posterPath
             }
         } else {
             viewModel.observeTvDetailsLiveData().observe(viewLifecycleOwner
@@ -263,6 +265,7 @@ class MovieDetailsFragment : Fragment() {
                 binding.tvTitle.text = tv!!.name
                 binding.rbMovieRating.rating = tv!!.voteAverage.toFloat()
                 binding.tvOverview.text = tv!!.overview
+                posterPath = tv!!.posterPath
             }
         }
     }
@@ -273,11 +276,9 @@ class MovieDetailsFragment : Fragment() {
 
         tvOverview.setOnClickListener {
             if (!isClicked) {
-                // Expand it
                 isClicked = true
                 tvOverview.maxLines = 100
             } else {
-                // Collapse it
                 isClicked = false
                 tvOverview.maxLines = 4
             }
