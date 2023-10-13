@@ -2,6 +2,7 @@ package com.example.airmovies.retrofit
 
 import android.graphics.Movie
 import com.example.airmovies.model.actor.ActorDetails
+import com.example.airmovies.model.actor.ActorMovieList
 import com.example.airmovies.model.movie.MovieCredits
 import com.example.airmovies.model.movie.MovieDetails
 import com.example.airmovies.model.movie.MoviesList
@@ -55,5 +56,5 @@ interface MovieApi {
     fun getActorDetails(@Path("person_id") personId: String): Call<ActorDetails>
 
     @GET("3/person/{person_id}/movie_credits?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
-    fun getActorFilmography(@Path("person_id") personId: String): Call<MoviesList>
+    fun getActorFilmography(@Path("person_id") personId: String): Call<ActorMovieList>
 }

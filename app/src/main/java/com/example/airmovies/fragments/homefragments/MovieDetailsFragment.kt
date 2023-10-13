@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.airmovies.R
 import com.example.airmovies.adapters.ActorsAdapter
 import com.example.airmovies.adapters.SimilarItemsAdapter
 import com.example.airmovies.data.movie.MovieWatchlist
@@ -37,7 +39,6 @@ class MovieDetailsFragment : Fragment() {
     private lateinit var idTv: String
     private lateinit var isMovie: String
     private var isClicked: Boolean = false
-    private var isMovieHelp: Boolean = false
     private var toastHelper: Boolean = false
     private var toastHelperSecond: Boolean = false
 
@@ -92,6 +93,8 @@ class MovieDetailsFragment : Fragment() {
         prepareActorsRecyclerView()
         prepareSimilarItemsRecyclerView()
         setUpClickListeners()
+        onActorClickListener()
+        onSimilarClickListener()
     }
 
     private fun getOnClickData() {
@@ -270,8 +273,6 @@ class MovieDetailsFragment : Fragment() {
         }
     }
 
-
-
     private fun setUpClickListeners() = binding.apply {
 
         tvOverview.setOnClickListener {
@@ -281,6 +282,44 @@ class MovieDetailsFragment : Fragment() {
             } else {
                 isClicked = false
                 tvOverview.maxLines = 4
+            }
+        }
+    }
+
+    private fun onActorClickListener() {
+        if (isMovie == "0") {
+            actorsAdapter.setUpOnMovieActorClickListener { actor ->
+                val bundle = Bundle().apply {
+                    putString("idActor", actor.id.toString())
+                }
+                findNavController().navigate(R.id.action_movieDetailsFragment_to_actorFragment, bundle)
+            }
+        } else {
+            actorsAdapter.setUpOnTvActorClickListener { actor ->
+                val bundle = Bundle().apply {
+                    putString("idActor", actor.id.toString())
+                }
+                findNavController().navigate(R.id.action_movieDetailsFragment_to_actorFragment, bundle)
+            }
+        }
+    }
+
+    private fun onSimilarClickListener() {
+        if (isMovie == "0") {
+            similarItemsAdapter.setUpOnMovieClickListener { movie ->
+                val bundle = Bundle().apply {
+                    putString("isMovie", "0")
+                    putString("idMovie", movie.id.toString())
+                }
+                findNavController().navigate(R.id.action_movieDetailsFragment_self, bundle)
+            }
+        } else {
+            similarItemsAdapter.setUpOnTvClickListener { tv ->
+                val bundle = Bundle().apply {
+                    putString("isTv", "1")
+                    putString("idTv", tv.id.toString())
+                }
+                findNavController().navigate(R.id.action_movieDetailsFragment_self, bundle)
             }
         }
     }

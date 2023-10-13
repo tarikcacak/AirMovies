@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvActorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
@@ -70,10 +70,10 @@
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvActors" />
+                app:layout_constraintTop_toBottomOf="@+id/tvBirthDate" />
 
             <TextView
-                android:id="@+id/tvActors"
+                android:id="@+id/tvBirthDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -81,11 +81,11 @@
                 android:text="Born: 28.10.2003"
                 android:textColor="@color/primaryLightColor"
                 android:textSize="@dimen/_25ssp"
-                app:layout_constraintStart_toStartOf="@+id/tvTitle"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+                app:layout_constraintStart_toStartOf="@+id/tvActorName"
+                app:layout_constraintTop_toBottomOf="@+id/tvActorName" />
 
             <TextView
-                android:id="@+id/tvSimilarMovies"
+                android:id="@+id/tvActorFilmography"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/light"
@@ -93,18 +93,18 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:textColor="@color/primaryLightColor"
                 android:textSize="@dimen/_25ssp"
-                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvActorName"
                 app:layout_constraintTop_toBottomOf="@+id/tvOverview" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recViewSimilarMovies"
+                android:id="@+id/recViewActorFilmography"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_240sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSimilarMovies" />
+                app:layout_constraintTop_toBottomOf="@id/tvActorFilmography" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

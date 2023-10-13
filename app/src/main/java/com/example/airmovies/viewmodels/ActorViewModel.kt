@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.airmovies.model.actor.ActorDetails
+import com.example.airmovies.model.actor.ActorMovieList
+import com.example.airmovies.model.actor.ActorMovieResult
 import com.example.airmovies.model.movie.MoviesList
 import com.example.airmovies.model.movie.MoviesResult
 import com.example.airmovies.retrofit.RetrofitInstance
@@ -15,7 +17,7 @@ import retrofit2.Response
 class ActorViewModel : ViewModel() {
 
     private val actorDetailsLiveData = MutableLiveData<ActorDetails>()
-    private val actorFilmographyLiveData = MutableLiveData<List<MoviesResult>>()
+    private val actorFilmographyLiveData = MutableLiveData<List<ActorMovieResult>>()
 
     fun getActorDetails(actorId: String) {
         RetrofitInstance.api.getActorDetails(actorId).enqueue(object : Callback<ActorDetails> {
@@ -32,14 +34,17 @@ class ActorViewModel : ViewModel() {
     }
 
     fun getActorFilmography(actorId: String) {
-        RetrofitInstance.api.getActorFilmography(actorId).enqueue(object : Callback<MoviesList> {
-            override fun onResponse(call: Call<MoviesList>, response: Response<MoviesList>) {
+        RetrofitInstance.api.getActorFilmography(actorId).enqueue(object : Callback<ActorMovieList> {
+            override fun onResponse(
+                call: Call<ActorMovieList>,
+                response: Response<ActorMovieList>
+            ) {
                 if (response.body() != null) {
-                    actorFilmographyLiveData.value = response.body()!!.results
+                    actorFilmographyLiveData.value = response.body()!!.cast
                 }
             }
 
-            override fun onFailure(call: Call<MoviesList>, t: Throwable) {
+            override fun onFailure(call: Call<ActorMovieList>, t: Throwable) {
                 Log.e("ActorsViewModel", t.message.toString())
             }
         })
@@ -49,7 +54,7 @@ class ActorViewModel : ViewModel() {
         return actorDetailsLiveData
     }
 
-    fun observeActorFilmographyLiveData(): LiveData<List<MoviesResult>> {
+    fun observeActorFilmographyLiveData(): LiveData<List<ActorMovieResult>> {
         return actorFilmographyLiveData
     }
 
