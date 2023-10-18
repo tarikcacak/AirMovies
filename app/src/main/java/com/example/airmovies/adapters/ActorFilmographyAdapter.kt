@@ -5,15 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.airmovies.databinding.PopularMoviesBinding
-import com.example.airmovies.model.actor.ActorMovieResult
-import com.example.airmovies.model.movie.MoviesResult
+import com.example.airmovies.model.actor.ActorMoviesResult
 
 class ActorFilmographyAdapter() : RecyclerView.Adapter<ActorFilmographyAdapter.ActorFilmographyViewHolder>() {
 
-    var onItemClick: ((ActorMovieResult) -> Unit)? = null
-    private var movieList = ArrayList<ActorMovieResult>()
+    var onItemClick: ((ActorMoviesResult) -> Unit)? = null
+    private var movieList = ArrayList<ActorMoviesResult>()
 
-    fun setFilmography(movieList: ArrayList<ActorMovieResult>) {
+    fun setFilmography(movieList: ArrayList<ActorMoviesResult>) {
         this.movieList = movieList
         notifyDataSetChanged()
     }
@@ -38,7 +37,7 @@ class ActorFilmographyAdapter() : RecyclerView.Adapter<ActorFilmographyAdapter.A
         return movieList.size
     }
 
-    fun setUpOnFilmographyClickListener(movie: (ActorMovieResult) -> Unit) {
+    fun setUpOnFilmographyClickListener(movie: (ActorMoviesResult) -> Unit) {
         onItemClick = movie
     }
 

@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,9 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.airmovies.R
 import com.example.airmovies.adapters.ActorFilmographyAdapter
 import com.example.airmovies.databinding.FragmentActorBinding
-import com.example.airmovies.model.actor.ActorMovieList
-import com.example.airmovies.model.actor.ActorMovieResult
-import com.example.airmovies.model.movie.MoviesResult
+import com.example.airmovies.model.actor.ActorMoviesResult
 import com.example.airmovies.viewmodels.ActorViewModel
 
 class ActorFragment : Fragment() {
@@ -84,7 +81,7 @@ class ActorFragment : Fragment() {
     private fun observeActorFilmography() {
         viewModel.observeActorFilmographyLiveData().observe(viewLifecycleOwner
         ) { movieList ->
-            actorFilmographyAdapter.setFilmography(movieList = movieList as ArrayList<ActorMovieResult>)
+            actorFilmographyAdapter.setFilmography(movieList = movieList as ArrayList<ActorMoviesResult>)
         }
     }
 

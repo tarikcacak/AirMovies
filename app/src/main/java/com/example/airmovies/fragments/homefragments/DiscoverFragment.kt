@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.airmovies.adapters.DiscoverViewPagerAdapter
 import com.example.airmovies.databinding.FragmentDiscoverBinding
-import com.example.airmovies.fragments.discoverfragments.ActorDiscoverFragment
-import com.example.airmovies.fragments.discoverfragments.MovieDiscoverFragment
-import com.example.airmovies.fragments.discoverfragments.TvShowDiscoverFragment
+import com.example.airmovies.fragments.discoverfragments.ActorTrendingFragment
+import com.example.airmovies.fragments.discoverfragments.MovieTrendingFragment
+import com.example.airmovies.fragments.discoverfragments.TvShowTrendingFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DiscoverFragment : Fragment() {
@@ -29,9 +29,9 @@ class DiscoverFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val discoverFragments = arrayListOf<Fragment>(
-            MovieDiscoverFragment(),
-            TvShowDiscoverFragment(),
-            ActorDiscoverFragment()
+            MovieTrendingFragment(),
+            TvShowTrendingFragment(),
+            ActorTrendingFragment()
         )
 
         val viewPager2Adapter = DiscoverViewPagerAdapter(discoverFragments, childFragmentManager, lifecycle)
@@ -44,6 +44,7 @@ class DiscoverFragment : Fragment() {
             }
         }.attach()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

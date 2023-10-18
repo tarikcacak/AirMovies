@@ -10,6 +10,9 @@
         android:layout_width="@dimen/_130sdp"
         android:layout_height="@dimen/_90sdp"
         app:cardCornerRadius="18dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@color/primaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,7 +21,8 @@
             android:id="@+id/ivDiscover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@color/primaryColor" />
+            android:src="@color/primaryColor"
+            android:scaleType="centerCrop"/>
     </androidx.cardview.widget.CardView>
 
     <TextView

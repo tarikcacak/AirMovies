@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".fragments.discoverfragments.MovieDiscoverFragment"
-    android:padding="@dimen/_16sdp">
+    tools:context=".fragments.discoverfragments.MovieTrendingFragment"
+    android:paddingStart="@dimen/_16sdp"
+    android:paddingEnd="@dimen/_16sdp">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewMovieDiscover"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
