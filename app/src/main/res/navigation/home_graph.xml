@@ -18,7 +18,11 @@
         android:id="@+id/discoverFragment"
         android:name="com.example.airmovies.fragments.homefragments.DiscoverFragment"
         android:label="fragment_discover"
-        tools:layout="@layout/fragment_discover" />
+        tools:layout="@layout/fragment_discover" >
+        <action
+            android:id="@+id/action_discoverFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/watchlistFragment"
         android:name="com.example.airmovies.fragments.homefragments.WatchlistFragment"
@@ -49,5 +53,17 @@
         <action
             android:id="@+id/action_actorFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.airmovies.fragments.discoverfragments.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_actorFragment"
+            app:destination="@id/actorFragment" />
     </fragment>
 </navigation>

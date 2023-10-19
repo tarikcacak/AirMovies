@@ -60,6 +60,9 @@ interface MovieApi {
     @GET("3/trending/tv/week?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
     fun getTrendingTvShows(): Call<TvShowsList>
 
+    @GET("3/search/tv?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
+    fun getSearchTvShows(@Query("query") query: String): Call<TvShowsList>
+
 
 
     @GET("3/person/{person_id}?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
@@ -70,4 +73,7 @@ interface MovieApi {
 
     @GET("3/trending/person/week?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
     fun getTrendingActors(): Call<PopularActorList>
+
+    @GET("3/search/person?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
+    fun getSearchActors(@Query("query") query: String): Call<PopularActorList>
 }

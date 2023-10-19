@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.discoverfragments.SearchFragment"
+    android:background="@color/black">
+
+    <TextView
+        android:id="@+id/searchText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/boldfont"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_7sdp"
+        android:drawablePadding="10dp"
+        android:singleLine="true"
+        android:text="Search"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_18sdp"
+        android:textColorHint="@color/primaryColor"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_25ssp"
+        app:circularflow_radiusInDP="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchText"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/primaryColor"
+        android:hint="Search..."
+        android:paddingStart="@dimen/_15sdp"
+        android:background="@drawable/search_box_background" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewSearch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/etSearch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

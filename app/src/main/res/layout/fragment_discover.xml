@@ -41,28 +41,32 @@
                     android:layout_weight="1">
 
 
-                    <EditText
-                        android:id="@+id/searchText"
+                    <TextView
+                        android:id="@+id/discoverText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/search_box_background"
-                        android:fontFamily="@font/light"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:paddingTop="@dimen/_7sdp"
+                        android:fontFamily="@font/boldfont"
+                        android:paddingTop="@dimen/_10sdp"
                         android:paddingBottom="@dimen/_7sdp"
-                        android:drawableLeft="@drawable/ic_discover"
-                        android:drawableTint="@color/primaryColor"
                         android:drawablePadding="10dp"
                         android:singleLine="true"
-                        android:hint="Search..."
+                        android:text="Discover"
                         android:textColorHint="@color/primaryColor"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="@dimen/_15ssp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_25ssp"
                         app:circularflow_radiusInDP="15dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/searchIcon"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/ic_discover"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
