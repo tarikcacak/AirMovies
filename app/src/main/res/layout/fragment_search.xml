@@ -21,7 +21,7 @@
         android:layout_marginStart="@dimen/_18sdp"
         android:textColorHint="@color/primaryColor"
         android:textColor="@color/white"
-        android:textSize="@dimen/_25ssp"
+        android:textSize="@dimen/_30ssp"
         app:circularflow_radiusInDP="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

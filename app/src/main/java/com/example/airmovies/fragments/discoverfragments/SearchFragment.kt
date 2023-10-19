@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.airmovies.R
 import com.example.airmovies.adapters.TrendingActorAdapter
@@ -67,6 +68,7 @@ class SearchFragment : Fragment() {
                     viewModel.getSearchMovies(searchQuery.toString())
                     prepareMovieSearchRecyclerView()
                     observeSearchMoviesLiveData()
+                    onMovieClickListener()
                 }
             }
         } else if (category == "1") {
@@ -77,6 +79,7 @@ class SearchFragment : Fragment() {
                     viewModel.getSearchTvShows(searchQuery.toString())
                     prepareTvShowSearchRecyclerView()
                     observeSearchTvShowsLiveData()
+                    onTvShowClickListener()
                 }
             }
         } else if (category == "2") {
@@ -87,6 +90,7 @@ class SearchFragment : Fragment() {
                     viewModel.getSearchActors(searchQuery.toString())
                     prepareActorSearchRecyclerView()
                     observeSearchActorsLiveData()
+                    onActorClickListener()
                 }
             }
         }
@@ -131,6 +135,35 @@ class SearchFragment : Fragment() {
         binding.recViewSearch.apply {
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
             adapter = searchActorsAdapter
+        }
+    }
+
+    private fun onMovieClickListener() {
+        searchMoviesAdapter.setUpOnDiscoverMoviesClickListener { movie ->
+            val bundle = Bundle().apply {
+                putString("isMovie", "0")
+                putString("idMovie", movie.id.toString())
+            }
+            findNavController().navigate(R.id.action_searchFragment_to_movieDetailsFragment, bundle)
+        }
+    }
+
+    private fun onTvShowClickListener() {
+        searchTvShowsAdapter.setUpOnDiscoverTvShowsClickListener { tvShow ->
+            val bundle = Bundle().apply {
+                putString("isTv", "1")
+                putString("idTv", tvShow.id.toString())
+            }
+            findNavController().navigate(R.id.action_searchFragment_to_movieDetailsFragment, bundle)
+        }
+    }
+
+    private fun onActorClickListener() {
+        searchActorsAdapter.setUpOnDiscoverActorClickListener { actor ->
+            val bundle = Bundle().apply {
+                putString("idActor", actor.id.toString())
+            }
+            findNavController().navigate(R.id.action_searchFragment_to_actorFragment, bundle)
         }
     }
 }

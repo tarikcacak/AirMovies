@@ -77,6 +77,19 @@
                 app:layout_constraintTop_toBottomOf="@id/tvTopRatedTvShows" />
 
             <TextView
+                android:id="@+id/tvHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_30ssp"
+                android:fontFamily="@font/boldfont"
+                android:layout_marginStart="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/tvPopularMovies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,7 +100,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_20ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/tvHome" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recViewPopularMovies"
