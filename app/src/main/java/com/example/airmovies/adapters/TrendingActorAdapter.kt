@@ -28,17 +28,10 @@ class TrendingActorAdapter() : RecyclerView.Adapter<TrendingActorAdapter.Trendin
             .into(holder.binding.ivDiscover)
 
         holder.binding.tvDiscover.text = actorList!![position].name
-        holder.itemView.setOnClickListener {
-            onItemClick!!.invoke(actorList!![position])
-        }
     }
 
     override fun getItemCount(): Int {
         return actorList.size
-    }
-
-    fun setUpOnDiscoverActorClickListener(actor: (PopularActorResult) -> Unit) {
-        onItemClick = actor
     }
 
     class TrendingActorViewHolder(var binding: TrendingItemBinding): RecyclerView.ViewHolder(binding.root)

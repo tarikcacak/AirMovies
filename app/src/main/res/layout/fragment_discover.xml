@@ -53,7 +53,7 @@
                         android:text="Discover"
                         android:textColorHint="@color/primaryColor"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_30ssp"
+                        android:textSize="@dimen/_25ssp"
                         app:circularflow_radiusInDP="15dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

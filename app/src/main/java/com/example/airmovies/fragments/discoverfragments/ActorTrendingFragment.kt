@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.airmovies.R
 import com.example.airmovies.adapters.TrendingActorAdapter
 import com.example.airmovies.databinding.FragmentActorDiscoverBinding
 import com.example.airmovies.model.actor.PopularActorResult
@@ -40,31 +38,20 @@ class ActorTrendingFragment : BaseDiscoverFragment() {
         prepareTrendingActorRecyclerView()
         viewModel.getTrendingShows()
         observeTrendingActor()
-
-        onActorClickListener()
     }
 
-    private fun prepareTrendingActorRecyclerView() {
+    fun prepareTrendingActorRecyclerView() {
         binding.recViewActorDiscover.apply {
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
             adapter = trendingActorAdapter
         }
     }
 
-    private fun observeTrendingActor() {
+    fun observeTrendingActor() {
         viewModel.observeTrendingActorLiveData().observe(viewLifecycleOwner
         ) { actorList ->
             trendingActorAdapter.setTrendingActors(actorList = actorList as ArrayList<PopularActorResult>)
 
-        }
-    }
-
-    private fun onActorClickListener() {
-        trendingActorAdapter.setUpOnDiscoverActorClickListener { actor ->
-            val bundle = Bundle().apply {
-                putString("idActor", actor.id.toString())
-            }
-            findNavController().navigate(R.id.action_discoverFragment_to_actorFragment, bundle)
         }
     }
 

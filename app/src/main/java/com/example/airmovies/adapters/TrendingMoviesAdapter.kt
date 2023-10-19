@@ -27,9 +27,6 @@ class TrendingMoviesAdapter() : RecyclerView.Adapter<TrendingMoviesAdapter.Trend
             .into(holder.binding.ivDiscover)
 
         holder.binding.tvDiscover.text = movieList!![position].title
-        holder.itemView.setOnClickListener {
-            onItemClick!!.invoke(movieList!![position])
-        }
     }
 
     override fun getItemCount(): Int {
