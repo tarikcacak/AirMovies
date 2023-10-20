@@ -16,6 +16,56 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/tvEmptyMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#9F9F9F"
+                android:text="Empty"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/light"
+                app:layout_constraintTop_toBottomOf="@id/tvWatchlistMovies"
+                app:layout_constraintBottom_toTopOf="@id/tvWatchlistTvShows"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvEmptyTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#9F9F9F"
+                android:text="Empty"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/light"
+                app:layout_constraintTop_toBottomOf="@id/tvWatchlistTvShows"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/pbMovieWatchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/primaryColor"
+                app:layout_constraintTop_toBottomOf="@id/tvWatchlistMovies"
+                app:layout_constraintBottom_toTopOf="@id/tvWatchlistTvShows"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/pbTvWatchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/primaryColor"
+                app:layout_constraintTop_toBottomOf="@id/tvWatchlistTvShows"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone" />
+
     <TextView
         android:id="@+id/watchlistText"
         android:layout_width="0dp"

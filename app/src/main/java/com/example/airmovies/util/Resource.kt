@@ -1,5 +1,7 @@
 package com.example.airmovies.util
 
+import com.example.airmovies.data.movie.MovieWatchlist
+
 sealed class Resource<T> (
     val data: T? = null,
     val message: String? = null,

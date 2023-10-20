@@ -51,7 +51,6 @@
         android:id="@+id/tvActorName"
         android:layout_width="@dimen/_110sdp"
         android:layout_height="wrap_content"
-
         android:text="Actor Name"
         android:textAlignment="center"
         android:textColor="#9F9F9F"
