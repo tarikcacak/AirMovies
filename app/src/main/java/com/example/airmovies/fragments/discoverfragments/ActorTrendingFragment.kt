@@ -35,6 +35,7 @@ class ActorTrendingFragment : BaseDiscoverFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.pbActors.visibility = View.VISIBLE
         prepareTrendingActorRecyclerView()
         viewModel.getTrendingShows()
         observeTrendingActor()
@@ -51,7 +52,7 @@ class ActorTrendingFragment : BaseDiscoverFragment() {
         viewModel.observeTrendingActorLiveData().observe(viewLifecycleOwner
         ) { actorList ->
             trendingActorAdapter.setTrendingActors(actorList = actorList as ArrayList<PopularActorResult>)
-
+            binding.pbActors.visibility = View.GONE
         }
     }
 

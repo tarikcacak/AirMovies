@@ -34,6 +34,7 @@ class TvShowTrendingFragment : BaseDiscoverFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.pbTvShows.visibility = View.VISIBLE
         prepareTrendingTvShowRecycler()
         viewModel.getTrendingTvShows()
         observeTrendingTvShows()
@@ -51,7 +52,7 @@ class TvShowTrendingFragment : BaseDiscoverFragment() {
         viewModel.observeTrendingTvShowLiveData().observe(viewLifecycleOwner
         ) { tvShowList ->
             trendingTvShowsAdapter.setTrendingTvShows(tvShowList = tvShowList as ArrayList<TvShowsResult>)
-
+            binding.pbTvShows.visibility = View.GONE
         }
     }
 

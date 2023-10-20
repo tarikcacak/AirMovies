@@ -19,7 +19,6 @@
         android:text="Search"
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginStart="@dimen/_18sdp"
-        android:textColorHint="@color/primaryColor"
         android:textColor="@color/white"
         android:textSize="@dimen/_25ssp"
         app:circularflow_radiusInDP="15dp"

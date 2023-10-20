@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.homefragments.WatchlistFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.homefragments.WatchlistFragment"
+    android:background="@color/black">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:fillViewport="true">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/watchlistText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/boldfont"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_7sdp"
+        android:drawablePadding="10dp"
+        android:singleLine="true"
+        android:text="Watchlist"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_18sdp"
+        android:textColorHint="@color/primaryColor"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_25ssp"
+        app:circularflow_radiusInDP="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvWatchlistMovies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:fontFamily="@font/boldfont"
+        android:text="Movies"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/watchlistText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewWatchlistMovies"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_240sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWatchlistMovies" />
+
+    <TextView
+        android:id="@+id/tvWatchlistTvShows"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:fontFamily="@font/boldfont"
+        android:text="TV Shows"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recViewWatchlistMovies" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewWatchlistTvShows"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_240sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWatchlistTvShows"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_18sdp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

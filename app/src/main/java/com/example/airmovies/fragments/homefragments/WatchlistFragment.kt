@@ -6,14 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.airmovies.R
+import com.example.airmovies.databinding.FragmentActorBinding
+import com.example.airmovies.databinding.FragmentWatchlistBinding
 
 class WatchlistFragment : Fragment() {
+
+    private var _binding: FragmentWatchlistBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_watchlist, container, false)
+        _binding = FragmentWatchlistBinding.inflate(inflater, container, false)
+        return binding.root
     }
+
 }

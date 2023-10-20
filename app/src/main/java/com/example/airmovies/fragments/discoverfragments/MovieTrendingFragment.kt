@@ -34,6 +34,7 @@ class MovieTrendingFragment : BaseDiscoverFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.pbMovies.visibility = View.VISIBLE
         prepareTrendingMoviesRecyclerView()
         viewModel.getTrendingMovies()
         observeTrendingMovies()
@@ -50,6 +51,7 @@ class MovieTrendingFragment : BaseDiscoverFragment() {
         viewModel.observeTrendingMoviesLiveData().observe(viewLifecycleOwner
         ) { movieList ->
             trendingMoviesAdapter.setTrendingMovies(movieList = movieList as ArrayList<MoviesResult>)
+            binding.pbMovies.visibility = View.GONE
         }
     }
 
