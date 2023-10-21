@@ -40,7 +40,7 @@ class SimilarItemsAdapter() : RecyclerView.Adapter<SimilarItemsAdapter.SimilarIt
                 .into(holder.binding.ivPopularMovie)
 
             holder.binding.tvPopularMovie.text = movieList!![position].title
-            holder.binding.rbPopularMovie.rating = movieList!![position].voteAverage.toFloat()
+            holder.binding.rbPopularMovie.rating = (movieList!![position].voteAverage.toFloat() / 2.0).toFloat()
             holder.itemView.setOnClickListener {
                 onMovieClick!!.invoke(movieList!![position])
             }

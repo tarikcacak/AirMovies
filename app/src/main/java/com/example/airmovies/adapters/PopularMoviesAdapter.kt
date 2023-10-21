@@ -27,7 +27,7 @@ class PopularMoviesAdapter() : RecyclerView.Adapter<PopularMoviesAdapter.Popular
             .into(holder.binding.ivPopularMovie)
 
         holder.binding.tvPopularMovie.text = movieList[position].title
-        holder.binding.rbPopularMovie.rating = movieList[position].voteAverage.toFloat()
+        holder.binding.rbPopularMovie.rating = (movieList[position].voteAverage.toFloat() / 2.0).toFloat()
         holder.itemView.setOnClickListener {
             onItemClick!!.invoke(movieList!![position])
         }

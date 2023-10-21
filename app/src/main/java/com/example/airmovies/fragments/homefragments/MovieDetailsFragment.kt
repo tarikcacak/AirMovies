@@ -254,7 +254,7 @@ class MovieDetailsFragment : Fragment() {
                     .into(binding.imgPoster)
 
                 binding.tvTitle.text = movie!!.title
-                binding.rbMovieRating.rating = movie!!.voteAverage.toFloat()
+                binding.rbMovieRating.rating = (movie!!.voteAverage.toFloat() / 2.0).toFloat()
                 binding.tvOverview.text = movie!!.overview
                 posterPath = movie!!.posterPath
             }
