@@ -70,7 +70,7 @@
                 android:id="@+id/fabFavorites"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_watchlist"
+                android:src="@drawable/ic_add"
                 android:tint="@color/white"
                 app:backgroundTint="@color/primaryLightColor"
                 android:layout_marginEnd="@dimen/_10sdp"
