@@ -249,12 +249,11 @@ class MovieDetailsViewModel @Inject constructor(
             tvExistLiveData.value = false
 
             val userDocumentRef = firestore.collection("watchlist").document(currentUid)
-
                 userDocumentRef.get()
                     .addOnSuccessListener { documentSnapshot ->
                         if (documentSnapshot.exists()) {
                             val map = mutableMapOf<String, Any>()
-                            map["movieId"] = tvWatchlist.tvId!!
+                            map["tvId"] = tvWatchlist.tvId!!
                             map["posterPath"] = tvWatchlist.posterPath!!
                             map["title"] = tvWatchlist.title!!
                             map["voteAverage"] = tvWatchlist.voteAverage!!
@@ -273,7 +272,7 @@ class MovieDetailsViewModel @Inject constructor(
                                 "uid" to currentUid,
                                 "movie" to listOf(
                                     mapOf(
-                                        "movieId" to tvWatchlist.tvId,
+                                        "tvId" to tvWatchlist.tvId,
                                         "posterPath" to tvWatchlist.posterPath,
                                         "title" to tvWatchlist.title,
                                         "voteAverage" to tvWatchlist.voteAverage

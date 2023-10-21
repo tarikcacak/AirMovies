@@ -10,6 +10,7 @@ import com.example.airmovies.databinding.PopularMoviesBinding
 class TvWatchlistAdapter() : RecyclerView.Adapter<TvWatchlistAdapter.TvWatchlistViewHolder>() {
 
     var onItemClick: ((TvWatchlist) -> Unit)? = null
+    var onLongItemClick: ((TvWatchlist) -> Unit)? = null
     private var tvWatchlist = ArrayList<TvWatchlist>()
 
     fun setTv(tvWatchlist: ArrayList<TvWatchlist>) {
@@ -31,6 +32,10 @@ class TvWatchlistAdapter() : RecyclerView.Adapter<TvWatchlistAdapter.TvWatchlist
         holder.itemView.setOnClickListener {
             onItemClick!!.invoke(tvWatchlist!![position])
         }
+        holder.itemView.setOnLongClickListener {
+            onLongItemClick!!.invoke(tvWatchlist[position])
+            true
+        }
     }
 
     override fun getItemCount(): Int {
@@ -39,6 +44,10 @@ class TvWatchlistAdapter() : RecyclerView.Adapter<TvWatchlistAdapter.TvWatchlist
 
     fun setOnWatchlistTvClickListener(tv: (TvWatchlist) -> Unit) {
         onItemClick = tv
+    }
+
+    fun setOnLongWatchlistTvClickListener(tv: (TvWatchlist) -> Unit) {
+        onLongItemClick = tv
     }
 
     class TvWatchlistViewHolder(var binding: PopularMoviesBinding): RecyclerView.ViewHolder(binding.root)

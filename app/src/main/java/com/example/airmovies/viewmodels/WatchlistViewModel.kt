@@ -17,11 +17,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WatchlistViewModel @Inject constructor(
-    private val firebaseAuth: FirebaseAuth,
+    firebaseAuth: FirebaseAuth,
     private val firestore: FirebaseFirestore
 ): ViewModel() {
 
-    val currentUid = firebaseAuth.currentUser?.uid.toString()
+    private val currentUid = firebaseAuth.currentUser?.uid.toString()
 
     private val loadingStateMovieLiveData = MutableLiveData<Boolean>()
     private val errorStateMovieLiveData = MutableLiveData<String>()
@@ -50,7 +50,7 @@ class WatchlistViewModel @Inject constructor(
                             val movieList: MovieFirebase? = document.toObject(MovieFirebase::class.java)
                             movieListLiveData.value = movieList?.movie
 
-                            Log.d("dataRead", movieListLiveData.value.toString())
+                            Log.d("dataMovieRead", movieListLiveData.value.toString())
                         }
                     }
                 }
@@ -72,7 +72,7 @@ class WatchlistViewModel @Inject constructor(
                             val tvList: TvFirebase? = document.toObject(TvFirebase::class.java)
                             tvListLiveData.value = tvList?.tv
 
-                            Log.d("dataRead", tvListLiveData.value.toString())
+                            Log.d("dataTvRead", tvListLiveData.value.toString())
                         }
                     }
                 }
@@ -91,7 +91,7 @@ class WatchlistViewModel @Inject constructor(
             .update("movie", FieldValue.arrayRemove(map))
             .addOnSuccessListener {
                 movieDeleteLiveData.value = Resource.Success(movieWatchlist)
-                Log.d("succes",map.toString())
+                Log.d("success",map.toString())
             }
             .addOnFailureListener {
                 movieDeleteLiveData.value = Resource.Error(it.message.toString())
@@ -111,7 +111,7 @@ class WatchlistViewModel @Inject constructor(
             .update("tv", FieldValue.arrayRemove(map))
             .addOnSuccessListener {
                 tvDeleteLiveData.value = Resource.Success(tvWatchlist)
-                Log.d("succes",map.toString())
+                Log.d("success",map.toString())
             }
             .addOnFailureListener {
                 tvDeleteLiveData.value = Resource.Error(it.message.toString())

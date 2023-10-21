@@ -1,24 +1,21 @@
 package com.example.airmovies.fragments.homefragments
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.airmovies.R
 import com.example.airmovies.adapters.MovieWatchlistAdapter
-import com.example.airmovies.adapters.PopularMoviesAdapter
-import com.example.airmovies.adapters.PopularTvShowsAdapter
 import com.example.airmovies.adapters.TvWatchlistAdapter
-import com.example.airmovies.databinding.FragmentActorBinding
 import com.example.airmovies.databinding.FragmentWatchlistBinding
+import com.example.airmovies.util.Resource
 import com.example.airmovies.viewmodels.WatchlistViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -64,22 +61,7 @@ class WatchlistFragment : Fragment() {
 
         onMovieClickListener()
         onTvClickListener()
-
-        val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-            ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
-        ) {
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ) = true
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                viewModel
-            }
-        }
+        onLongClickListener()
     }
 
     private fun observeMovieWatchlist() {
@@ -156,4 +138,45 @@ class WatchlistFragment : Fragment() {
         }
     }
 
+    private fun onLongClickListener() {
+        movieWatchlistAdapter.setOnLongWatchlistMovieClickListener { movie ->
+            val dialogBuilder = AlertDialog.Builder(requireContext())
+            dialogBuilder.setMessage("Do you want to remove this movie from the watchlist?")
+            dialogBuilder.setCancelable(false)
+            dialogBuilder.setTitle("${movie.title}")
+            dialogBuilder.setPositiveButton("Yes") { dialog, which ->
+                viewModel.deleteMovie(movie)
+                dialog.dismiss()
+            }
+            dialogBuilder.setNegativeButton("No") { dialog, which ->
+                dialog.dismiss()
+            }
+            val dialog = dialogBuilder.create()
+            dialog.show()
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                .setTextColor(resources.getColor(R.color.primaryColor))
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                .setTextColor(resources.getColor(R.color.primaryColor))
+        }
+
+        tvWatchlistAdapter.setOnLongWatchlistTvClickListener { tv ->
+            val dialogBuilder = AlertDialog.Builder(requireContext())
+            dialogBuilder.setMessage("Do you want to remove this tv show from the watchlist?")
+            dialogBuilder.setCancelable(false)
+            dialogBuilder.setTitle("${tv.title}")
+            dialogBuilder.setPositiveButton("Yes") { dialog, which ->
+                viewModel.deleteTv(tv)
+                dialog.dismiss()
+            }
+            dialogBuilder.setNegativeButton("No") { dialog, which ->
+                dialog.dismiss()
+            }
+            val dialog = dialogBuilder.create()
+            dialog.show()
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                .setTextColor(resources.getColor(R.color.primaryColor))
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                .setTextColor(resources.getColor(R.color.primaryColor))
+        }
+    }
 }
