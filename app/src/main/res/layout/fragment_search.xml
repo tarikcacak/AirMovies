@@ -39,7 +39,8 @@
         android:textColor="@color/primaryColor"
         android:hint="Search..."
         android:paddingStart="@dimen/_15sdp"
-        android:background="@drawable/search_box_background" />
+        android:background="@drawable/search_box_background"
+        android:maxLines="1"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recViewSearch"

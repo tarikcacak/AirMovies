@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.airmovies.databinding.ActorItemBinding
+import com.example.airmovies.model.actor.PopularActorResult
 import com.example.airmovies.model.movie.MovieCast
 import com.example.airmovies.model.movie.MoviesResult
 import com.example.airmovies.model.tv.TvShowCast

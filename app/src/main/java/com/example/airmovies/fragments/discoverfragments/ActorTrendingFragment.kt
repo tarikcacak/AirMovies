@@ -11,7 +11,6 @@ import com.example.airmovies.R
 import com.example.airmovies.adapters.TrendingActorAdapter
 import com.example.airmovies.databinding.FragmentActorDiscoverBinding
 import com.example.airmovies.model.actor.PopularActorResult
-import com.example.airmovies.model.tv.TvShowsResult
 import com.example.airmovies.viewmodels.ActorTrendingViewModel
 
 class ActorTrendingFragment : BaseDiscoverFragment() {
@@ -39,9 +38,9 @@ class ActorTrendingFragment : BaseDiscoverFragment() {
 
         binding.pbActors.visibility = View.VISIBLE
         prepareTrendingActorRecyclerView()
-        viewModel.getTrendingShows()
+        viewModel.getTrendingActors()
         observeTrendingActor()
-        onItemClickListener()
+        onActorClickListener()
 
     }
 
@@ -60,10 +59,10 @@ class ActorTrendingFragment : BaseDiscoverFragment() {
         }
     }
 
-    private fun onItemClickListener() {
+    private fun onActorClickListener() {
         trendingActorAdapter.setUpOnDiscoverActorClickListener { actor ->
             val bundle = Bundle().apply {
-                getString("idActor", actor.id.toString())
+                putString("idActor", actor.id.toString())
             }
             findNavController().navigate(R.id.action_discoverFragment_to_actorFragment, bundle)
         }

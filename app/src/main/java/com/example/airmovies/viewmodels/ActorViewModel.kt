@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import com.example.airmovies.model.actor.ActorDetails
 import com.example.airmovies.model.actor.ActorMoviesList
 import com.example.airmovies.model.actor.ActorMoviesResult
+import com.example.airmovies.model.actor.PopularActorList
+import com.example.airmovies.model.actor.PopularActorResult
 import com.example.airmovies.retrofit.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,20 +34,21 @@ class ActorViewModel : ViewModel() {
     }
 
     fun getActorFilmography(actorId: String) {
-        RetrofitInstance.api.getActorFilmography(actorId).enqueue(object : Callback<ActorMoviesList> {
-            override fun onResponse(
-                call: Call<ActorMoviesList>,
-                response: Response<ActorMoviesList>
-            ) {
-                if (response.body() != null) {
-                    actorFilmographyLiveData.value = response.body()!!.cast
+        RetrofitInstance.api.getActorFilmography(actorId)
+            .enqueue(object : Callback<ActorMoviesList> {
+                override fun onResponse(
+                    call: Call<ActorMoviesList>,
+                    response: Response<ActorMoviesList>
+                ) {
+                    if (response.body() != null) {
+                        actorFilmographyLiveData.value = response.body()!!.cast
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<ActorMoviesList>, t: Throwable) {
-                Log.e("ActorsViewModel", t.message.toString())
-            }
-        })
+                override fun onFailure(call: Call<ActorMoviesList>, t: Throwable) {
+                    Log.e("ActorsViewModel", t.message.toString())
+                }
+            })
     }
 
     fun observeActorDetailsLiveData(): LiveData<ActorDetails> {

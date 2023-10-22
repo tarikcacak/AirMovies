@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.airmovies.R
 import com.example.airmovies.adapters.TrendingActorAdapter
@@ -52,6 +53,10 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getSearchData()
+
+        onMovieClickListener()
+        onTvShowClickListener()
+        onActorClickListener()
     }
 
     private fun getSearchData() {
@@ -131,6 +136,35 @@ class SearchFragment : Fragment() {
         binding.recViewSearch.apply {
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
             adapter = searchActorsAdapter
+        }
+    }
+
+    private fun onMovieClickListener() {
+        searchMoviesAdapter.setUpOnDiscoverMoviesClickListener { movie ->
+            val bundle = Bundle().apply {
+                putString("isMovie", "0")
+                putString("idMovie", movie.id.toString())
+            }
+            findNavController().navigate(R.id.action_searchFragment_to_movieDetailsFragment, bundle)
+        }
+    }
+
+    private fun onTvShowClickListener() {
+        searchTvShowsAdapter.setUpOnDiscoveryTvShowClickListener { tvShow ->
+            val bundle = Bundle().apply {
+                putString("isTv", "1")
+                putString("idTv", tvShow.id.toString())
+            }
+            findNavController().navigate(R.id.action_searchFragment_to_movieDetailsFragment, bundle)
+        }
+    }
+
+    private fun onActorClickListener() {
+        searchActorsAdapter.setUpOnDiscoverActorClickListener { actor ->
+            val bundle = Bundle().apply {
+                putString("idActor", actor.id.toString())
+            }
+            findNavController().navigate(R.id.action_searchFragment_to_actorFragment, bundle)
         }
     }
 }

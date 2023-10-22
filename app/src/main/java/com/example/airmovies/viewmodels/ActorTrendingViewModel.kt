@@ -15,7 +15,7 @@ class ActorTrendingViewModel : ViewModel() {
 
     private val trendingActorLiveData = MutableLiveData<List<PopularActorResult>>()
 
-    fun getTrendingShows() {
+    fun getTrendingActors() {
         RetrofitInstance.api.getTrendingActors().enqueue(object : Callback<PopularActorList> {
             override fun onResponse(
                 call: Call<PopularActorList>,
