@@ -1,26 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.homefragments.ProfileFragment"
-    android:background="@color/black">
+    android:background="@color/black"
+    tools:context=".fragments.homefragments.ProfileFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvEmptyMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#9F9F9F"
+                android:text="Empty"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/light"
+                app:layout_constraintTop_toBottomOf="@id/tvWatchlistMovies"
+                app:layout_constraintBottom_toTopOf="@id/tvWatchlistTvShows"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvEmptyTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#9F9F9F"
+                android:text="Empty"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/light"
+                app:layout_constraintTop_toBottomOf="@id/tvWatchlistTvShows"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/pbMovieWatchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/primaryColor"
+                app:layout_constraintTop_toBottomOf="@id/tvWatchlistMovies"
+                app:layout_constraintBottom_toTopOf="@id/tvWatchlistTvShows"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/pbTvWatchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/primaryColor"
+                app:layout_constraintTop_toBottomOf="@id/tvWatchlistTvShows"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone" />
 
     <TextView
         android:id="@+id/profileText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:drawablePadding="10dp"
         android:fontFamily="@font/boldfont"
         android:paddingTop="@dimen/_10sdp"
         android:paddingBottom="@dimen/_7sdp"
-        android:drawablePadding="10dp"
         android:singleLine="true"
         android:text="Profile"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginStart="@dimen/_18sdp"
-        android:textColorHint="@color/primaryColor"
         android:textColor="@color/white"
+        android:textColorHint="@color/primaryColor"
         android:textSize="@dimen/_25ssp"
         app:circularflow_radiusInDP="15dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,26 +89,28 @@
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/light"
         android:text="username_"
         android:textColor="@color/white"
         android:textSize="@dimen/_20ssp"
-        android:fontFamily="@font/light"
-        app:layout_constraintTop_toBottomOf="@id/profileText"
-        app:layout_constraintStart_toStartOf="@id/profileText" />
+        app:layout_constraintStart_toStartOf="@id/profileText"
+        app:layout_constraintTop_toBottomOf="@id/profileText" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvImgHolder"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_160sdp"
         android:layout_marginTop="@dimen/_20sdp"
+        android:backgroundTint="@color/primaryColor"
         app:cardCornerRadius="@dimen/_18sdp"
-        app:layout_constraintTop_toBottomOf="@id/tvUsername"
-        app:layout_constraintStart_toStartOf="@id/tvUsername">
+        app:layout_constraintStart_toStartOf="@id/tvUsername"
+        app:layout_constraintTop_toBottomOf="@id/tvUsername">
 
         <ImageView
             android:id="@+id/imgProfile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             android:src="@color/primaryColor" />
 
     </androidx.cardview.widget.CardView>
@@ -61,44 +122,97 @@
         android:backgroundTint="@color/btnColor"
         android:text="Change Image"
         android:textColor="@color/white"
-        app:layout_constraintStart_toEndOf="@id/cvImgHolder"
-        app:layout_constraintTop_toTopOf="@id/cvImgHolder"
         app:layout_constraintBottom_toBottomOf="@id/cvImgHolder"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cvImgHolder"
+        app:layout_constraintTop_toTopOf="@id/cvImgHolder" />
 
     <TextView
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="@font/light"
         android:text="Email: example@example.com"
         android:textColor="@color/white"
         android:textSize="@dimen/_15ssp"
-        android:fontFamily="@font/light"
-        android:layout_marginTop="@dimen/_20sdp"
         app:layout_constraintStart_toStartOf="@id/cvImgHolder"
         app:layout_constraintTop_toBottomOf="@id/cvImgHolder" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="@dimen/_200sdp"
+        android:id="@+id/btnResetPass"
+        android:layout_width="0dp"
         android:layout_height="@dimen/_50sdp"
         android:backgroundTint="@color/btnColor"
-        android:text="Change password"
+        android:text="Reset password"
         android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/btnLogut"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/logut"/>
+        android:layout_margin="@dimen/_10sdp"/>
 
-    <TextView
-        android:id="@+id/logut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLogut"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50sdp"
+        android:backgroundTint="@color/white"
         android:text="Logout"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="@dimen/_10sdp"
+        android:textColor="@color/btnColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="@dimen/_30sdp" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnResetPass"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+            <TextView
+                android:id="@+id/tvWatchlistMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:fontFamily="@font/boldfont"
+                android:text="Movies Watchlist"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnResetPass" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recViewWatchlistMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_240sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvWatchlistMovies" />
+
+            <TextView
+                android:id="@+id/tvWatchlistTvShows"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:fontFamily="@font/boldfont"
+                android:text="TV Shows Watchlist"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recViewWatchlistMovies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recViewWatchlistTvShows"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_240sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvWatchlistTvShows"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/_18sdp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

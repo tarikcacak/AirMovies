@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.airmovies.R
 import com.example.airmovies.adapters.TrendingTvShowsAdapter
 import com.example.airmovies.databinding.FragmentTvShowDiscoverBinding
 import com.example.airmovies.model.tv.TvShowsResult
@@ -38,6 +40,7 @@ class TvShowTrendingFragment : BaseDiscoverFragment() {
         prepareTrendingTvShowRecycler()
         viewModel.getTrendingTvShows()
         observeTrendingTvShows()
+        onItemClickListener()
 
     }
 
@@ -53,6 +56,16 @@ class TvShowTrendingFragment : BaseDiscoverFragment() {
         ) { tvShowList ->
             trendingTvShowsAdapter.setTrendingTvShows(tvShowList = tvShowList as ArrayList<TvShowsResult>)
             binding.pbTvShows.visibility = View.GONE
+        }
+    }
+
+    private fun onItemClickListener() {
+        trendingTvShowsAdapter.setUpOnDiscoveryTvShowClickListener { tv ->
+            val bundle = Bundle().apply {
+                putString("isMovie", "1")
+                putString("idTv", tv.id.toString())
+            }
+            findNavController().navigate(R.id.action_discoverFragment_to_movieDetailsFragment, bundle)
         }
     }
 

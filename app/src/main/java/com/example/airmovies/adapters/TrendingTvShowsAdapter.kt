@@ -27,10 +27,17 @@ class TrendingTvShowsAdapter() : RecyclerView.Adapter<TrendingTvShowsAdapter.Tre
             .into(holder.binding.ivDiscover)
 
         holder.binding.tvDiscover.text = tvShowList!![position].name
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(tvShowList[position])
+        }
     }
 
     override fun getItemCount(): Int {
         return tvShowList.size
+    }
+
+    fun setUpOnDiscoveryTvShowClickListener(tv: (TvShowsResult) -> Unit) {
+        onItemClick = tv
     }
 
     class TrendingTvShowsViewHolder(var binding: TrendingItemBinding): RecyclerView.ViewHolder(binding.root)

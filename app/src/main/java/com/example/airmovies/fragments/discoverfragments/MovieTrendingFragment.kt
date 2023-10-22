@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.airmovies.R
 import com.example.airmovies.adapters.TrendingMoviesAdapter
 import com.example.airmovies.databinding.FragmentMovieDiscoverBinding
 import com.example.airmovies.model.movie.MoviesResult
@@ -38,6 +40,8 @@ class MovieTrendingFragment : BaseDiscoverFragment() {
         prepareTrendingMoviesRecyclerView()
         viewModel.getTrendingMovies()
         observeTrendingMovies()
+        onItemClickListener()
+
     }
 
     private fun prepareTrendingMoviesRecyclerView() {
@@ -52,6 +56,16 @@ class MovieTrendingFragment : BaseDiscoverFragment() {
         ) { movieList ->
             trendingMoviesAdapter.setTrendingMovies(movieList = movieList as ArrayList<MoviesResult>)
             binding.pbMovies.visibility = View.GONE
+        }
+    }
+
+    private fun onItemClickListener() {
+        trendingMoviesAdapter.setUpOnDiscoverMoviesClickListener { movie ->
+            val bundle = Bundle().apply {
+                putString("isMovie", "0")
+                putString("idMovie", movie.id.toString())
+            }
+            findNavController().navigate(R.id.action_discoverFragment_to_movieDetailsFragment, bundle)
         }
     }
 

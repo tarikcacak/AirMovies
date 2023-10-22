@@ -18,18 +18,24 @@
         android:id="@+id/discoverFragment"
         android:name="com.example.airmovies.fragments.homefragments.DiscoverFragment"
         android:label="fragment_discover"
-        tools:layout="@layout/fragment_discover" >
+        tools:layout="@layout/fragment_discover">
         <action
             android:id="@+id/action_discoverFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_discoverFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/action_discoverFragment_to_actorFragment"
+            app:destination="@id/actorFragment" />
     </fragment>
     <fragment
-        android:id="@+id/watchlistFragment"
-        android:name="com.example.airmovies.fragments.homefragments.WatchlistFragment"
-        android:label="fragment_watchlist"
-        tools:layout="@layout/fragment_watchlist" >
+        android:id="@+id/comingSoonFragment"
+        android:name="com.example.airmovies.fragments.homefragments.ComingSoonFragment"
+        android:label="fragment_coming_soon"
+        tools:layout="@layout/fragment_coming_soon">
         <action
-            android:id="@+id/action_watchlistFragment_to_movieDetailsFragment"
+            android:id="@+id/action_comingSoonFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
     </fragment>
     <fragment

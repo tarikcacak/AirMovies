@@ -12,8 +12,8 @@
         android:icon="@drawable/ic_discover" />
 
     <item
-        android:id="@+id/watchlistFragment"
-        android:title="Watchlist"
+        android:id="@+id/comingSoonFragment"
+        android:title="Coming Soon"
         android:icon="@drawable/ic_watchlist" />
 
     <item

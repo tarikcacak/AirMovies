@@ -29,7 +29,7 @@ class TopRatedMoviesAdapter() : RecyclerView.Adapter<TopRatedMoviesAdapter.TopRa
         holder.binding.tvPopularMovie.text = moviesList[position].title
         holder.binding.rbPopularMovie.rating = (moviesList[position].voteAverage.toFloat() / 2.0).toFloat()
         holder.itemView.setOnClickListener {
-            onItemClick!!.invoke(moviesList!![position])
+            onItemClick!!.invoke(moviesList[position])
         }
     }
 

@@ -23,10 +23,13 @@ class TrendingMoviesAdapter() : RecyclerView.Adapter<TrendingMoviesAdapter.Trend
 
     override fun onBindViewHolder(holder: TrendingMoviesViewHolder, position: Int) {
         Glide.with(holder.itemView)
-            .load("https://image.tmdb.org/t/p/w500" + movieList!![position].posterPath)
+            .load("https://image.tmdb.org/t/p/w500" + movieList[position].posterPath)
             .into(holder.binding.ivDiscover)
 
-        holder.binding.tvDiscover.text = movieList!![position].title
+        holder.binding.tvDiscover.text = movieList[position].title
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(movieList[position])
+        }
     }
 
     override fun getItemCount(): Int {

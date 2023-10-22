@@ -40,6 +40,9 @@ interface MovieApi {
     @GET("3/search/movie?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
     fun getSearchMovies(@Query("query") query: String): Call<MoviesList>
 
+    @GET("3/movie/upcoming?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
+    fun getComingSoonMovies(): Call<MoviesList>
+
 
 
     @GET("3/tv/popular?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
@@ -62,6 +65,9 @@ interface MovieApi {
 
     @GET("3/search/tv?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
     fun getSearchTvShows(@Query("query") query: String): Call<TvShowsList>
+
+    @GET("3/tv/on_the_air?api_key=63b48d32b10c0628025ebbefd4a3b8c6")
+    fun getComingSoonTvShows(): Call<TvShowsList>
 
 
 
