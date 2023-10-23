@@ -3,7 +3,7 @@ The Android app created using Kotlin, Coroutines, MVVM, Dagger-Hilt, Retrofit, F
 It offers real-time data from TMDB, a user-friendly interface, and personalization features like saving favorites and receiving recommendations.
 The app follows modern architecture principles, ensuring maintainability and scalability.
 
-<img src="[image-url](https://github.com/tarikcacak/AirMovies/assets/113112797/638da762-5a55-4785-8769-172cacd4d2bf)" width="500" height="1000">
+<img src="https://github.com/tarikcacak/AirMovies/assets/113112797/638da762-5a55-4785-8769-172cacd4d2bf" width="500" height="1000">
 
 ![screenOption](https://github.com/tarikcacak/AirMovies/assets/113112797/8c086418-5aed-4f4b-8b69-260a196ad4f8)
 
