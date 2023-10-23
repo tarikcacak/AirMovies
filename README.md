@@ -5,8 +5,7 @@ The app follows modern architecture principles, ensuring maintainability and sca
 
 <img src="![screenIntro](https://github.com/tarikcacak/AirMovies/assets/113112797/d55be7f5-cfae-4e25-952c-dd6fbb4d7c90)" width="400" height="800">
 
-
-![screenOption](https://github.com/tarikcacak/AirMovies/assets/113112797/8c086418-5aed-4f4b-8b69-260a196ad4f8)
+<img src="![screenOption](https://github.com/tarikcacak/AirMovies/assets/113112797/8c086418-5aed-4f4b-8b69-260a196ad4f8)" width="400" height="800">
 
 ![screenRegister](https://github.com/tarikcacak/AirMovies/assets/113112797/1183ed63-8bc0-4226-8bf5-fc43b83032d1)
 
