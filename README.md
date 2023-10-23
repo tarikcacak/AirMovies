@@ -2,6 +2,7 @@
 The Android app created using Kotlin, Coroutines, MVVM, Dagger-Hilt, Retrofit, Firebase, and the TMDB API serves as a platform for users to explore movies and TV series.
 It offers real-time data from TMDB, a user-friendly interface, and personalization features like saving favorites and receiving recommendations.
 The app follows modern architecture principles, ensuring maintainability and scalability.
+<br>
 Video: https://www.youtube.com/watch?v=86PU3UlB7qk
 
 <img src="https://github.com/tarikcacak/AirMovies/assets/113112797/1f2c5775-8d89-4e2e-a7f5-5ccd84dcda4f" width="400" height="800">
